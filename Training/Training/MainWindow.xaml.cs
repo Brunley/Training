@@ -55,11 +55,11 @@ namespace WPFEvents
         public void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             
-            displayLabel.Content =  (display.ToString  );
+            //displayLabel.Content =  (display.ToString  );
         }
         public void EvadeButton_Click(object sender, RoutedEventArgs e)
         {
-            displayLabel.Content = ("{0}", );
+            //displayLabel.Content = ("{0}", );
         }
        
     }
