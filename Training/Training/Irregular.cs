@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 ///</summary>
 public class Irregular : RandomNumberGenerator {
     private static RandomNumberGenerator r;
-    ///<summary>
+    ///<summary>  // This is me making a change.
     /// Creates an instance of the default implementation of a cryptographic random number generator that can be used to generate random data.
     ///</summary>
     public Irregular() {
