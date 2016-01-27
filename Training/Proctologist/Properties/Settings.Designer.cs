@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Proctologist.Properties {
+namespace Highworm.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

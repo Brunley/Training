@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Proctologist {
+namespace Highworm {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
