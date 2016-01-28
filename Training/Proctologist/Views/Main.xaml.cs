@@ -16,7 +16,7 @@ namespace Highworm {
 
             // initialize controllers
             Encounter = new Controllers.EncounterController();
-            Setup = new Controllers.SetupController();
+            Setup = new Controllers.CharacterController();
 
             // begin creating characters
             var characters = new List<Character>();
@@ -31,7 +31,7 @@ namespace Highworm {
             set;
         }
 
-        public Controllers.SetupController Setup {
+        public Controllers.CharacterController Setup {
             get;
             set;
         }

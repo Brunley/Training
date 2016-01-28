@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace Highworm.Controllers {
-    public class SetupController {
+    public class CharacterController {
         /// <summary>
         /// Create a new character.
         /// </summary>
