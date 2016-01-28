@@ -3,7 +3,7 @@
 namespace Highworm {
     public class Character {
         public Character() {
-            Statistics = new List<Statistic>();
+            Statistics = new Dictionary<string, decimal>();
         }
 
         /// <summary>
@@ -14,7 +14,7 @@ namespace Highworm {
             set;
         }
 
-        public IList<Statistic> Statistics {
+        public IDictionary<string, decimal> Statistics {
             get;
             set;
         }

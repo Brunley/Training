@@ -23,7 +23,7 @@ namespace Highworm.Controllers {
         public IList<T> Sort<T>(IList<T> participants, string modifier ) where T : ViewModels.Participant {
             // roll initiative for each participant
             foreach (var participant in participants)
-                participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics.Single(n => n.Name == modifier).Value);
+                participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);
             // return the adjusted collection, sorted
             return participants.OrderBy(n => n.Order).ToList();
         }
