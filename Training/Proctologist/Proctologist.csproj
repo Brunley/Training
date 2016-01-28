@@ -66,6 +66,7 @@
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="View Models\Encounter.cs" />
     <Compile Include="View Models\Participant.cs" />
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>

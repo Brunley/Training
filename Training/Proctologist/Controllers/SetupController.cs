@@ -14,7 +14,12 @@ namespace Highworm.Controllers {
                 Name = name,
                 Statistics = new Dictionary<string, decimal> {
                     { "Health", 20 },
-                    { "Initiative", 0 }
+                    { "Initiative", 0 },
+                    {"Mana", 15 },
+                    {"Replenishment_Health", 5 },
+                    {"Replenishment_Mana", 5 },
+                    {"Energy", 1 },
+                    {"Force", 4 }
                 }
             };
         }
