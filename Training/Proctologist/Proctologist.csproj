@@ -61,9 +61,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\EncounterController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Statistic.cs" />
+    <Compile Include="View Models\Participant.cs" />
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
       <SubType>Code</SubType>

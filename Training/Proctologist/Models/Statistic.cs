@@ -5,7 +5,7 @@
             set;
         }
 
-        public double Value {
+        public decimal Value {
             get;
             set;
         }

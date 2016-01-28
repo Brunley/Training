@@ -6,6 +6,14 @@ namespace Highworm {
             Statistics = new List<Statistic>();
         }
 
+        /// <summary>
+        /// The character's name.
+        /// </summary>
+        public string Name {
+            get;
+            set;
+        }
+
         public IList<Statistic> Statistics {
             get;
             set;
