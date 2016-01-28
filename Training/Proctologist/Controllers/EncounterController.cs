@@ -27,11 +27,14 @@ namespace Highworm.Controllers {
         /// <param name="participants">
         /// The participants to sort.
         /// </param>
+        /// <param name="modifier">
+        /// The statistic to use as a modifier.
+        /// </param>
         /// <returns></returns>
-        public IList<T> Sort<T>(IList<T> participants ) where T : ViewModels.Participant {
+        public IList<T> Sort<T>(IList<T> participants, string modifier ) where T : ViewModels.Participant {
             // roll initiative for each participant
             foreach (var participant in participants)
-                participant.Order = Initiative(participant.Character.Statistics.Single(n => n.Name == "Initiative").Value);
+                participant.Order = Initiative(participant.Character.Statistics.Single(n => n.Name == modifier).Value);
             // return the adjusted collection, sorted
             return participants.OrderBy(n => n.Order).ToList();
         }
