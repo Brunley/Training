@@ -62,7 +62,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\EncounterController.cs" />
-    <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
     <Compile Include="Models\Character.cs" />
