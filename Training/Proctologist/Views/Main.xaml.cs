@@ -25,7 +25,7 @@ namespace Highworm {
             characters.Add(Setup.Create("Amelia"));
             characters.Add(Setup.Create("Daniel"));
         }
-
+        // Doesn't line 29 already start an encounter?        
         public Controllers.EncounterController Encounter {
             get;
             set;

@@ -20,12 +20,20 @@ namespace Highworm.Controllers {
         /// The statistic to use as a modifier.
         /// </param>
         /// <returns></returns>
-        public IList<T> Sort<T>(IList<T> participants, string modifier ) where T : ViewModels.Participant {
+        public IList<T> Sort<T>(IList<T> participants, string modifier) where T : ViewModels.Participant {
             // roll initiative for each participant
             foreach (var participant in participants)
                 participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);
             // return the adjusted collection, sorted
             return participants.OrderBy(n => n.Order).ToList();
+
+
         }
+
+        private Highworm.View_Models.Encounter Encounter {
+            get;
+            set;
+            }
+
     }
 }

@@ -14,6 +14,10 @@ namespace Highworm.View_Models {
                 // I may not know what the fuck I'm doing after all.
                 // Shit.
                 // Doesn't this act more like the SetupController? 
+
+
+
+
             };
         }
 
