@@ -4,11 +4,11 @@ namespace Highworm.ViewModels {
     /// <summary>
     /// A participant in an encounter.
     /// </summary>
-    public class Participant {
+    public class Participant: IMayEncounter {
         /// <summary>
         /// The character that is participating.
         /// </summary>
-        public Character Character {
+        public IMayParticipate Character {
             get;
             set;
         }

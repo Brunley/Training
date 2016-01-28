@@ -15,23 +15,34 @@ namespace Highworm {
             InitializeComponent();
 
             // initialize controllers
-            Encounter = new Controllers.EncounterController();
-            Setup = new Controllers.CharacterController();
+            EncounterController = new Controllers.EncounterController();
+            CharacterController = new Controllers.CharacterController();
 
+            // design a new encounter
+            var encounter = EncounterController.Create<ViewModels.Battle>();
+            
             // begin creating characters
             var characters = new List<Character>();
 
             // use the controller to add new characters
-            characters.Add(Setup.Create("Amelia"));
-            characters.Add(Setup.Create("Daniel"));
+            characters.Add(CharacterController.Create("Amelia"));
+            characters.Add(CharacterController.Create("Daniel"));
+
+            // register the characters for the encounter
+            characters.ForEach(character => {
+                encounter.Register(character);
+            });
+
+            // roll initiative for the encounter
+            EncounterController.Sort(encounter.Participants, "Initiative");
         }
-        // Doesn't line 29 already start an encounter?        
-        public Controllers.EncounterController Encounter {
+
+        public Controllers.EncounterController EncounterController {
             get;
             set;
         }
 
-        public Controllers.CharacterController Setup {
+        public Controllers.CharacterController CharacterController {
             get;
             set;
         }

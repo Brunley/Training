@@ -7,7 +7,7 @@
     <ProjectGuid>{BDC035E9-9D8F-4F33-A1B2-39B169590955}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Proctologist</RootNamespace>
+    <RootNamespace>Highworm</RootNamespace>
     <AssemblyName>Proctologist</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,10 +63,14 @@
     </Compile>
     <Compile Include="Controllers\EncounterController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />
+    <Compile Include="Infrastructure\Interfaces\May\IMayEncounter.cs" />
+    <Compile Include="Infrastructure\Interfaces\May\IMayParticipate.cs" />
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
     <Compile Include="Models\Character.cs" />
-    <Compile Include="View Models\Encounter.cs" />
+    <Compile Include="View Models\Encounters\Battle.cs" />
+    <Compile Include="View Models\Encounters\Exploration.cs" />
     <Compile Include="View Models\Participant.cs" />
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>

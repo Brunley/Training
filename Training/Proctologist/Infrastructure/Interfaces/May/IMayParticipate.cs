@@ -1,20 +1,19 @@
 ﻿using System.Collections.Generic;
 
 namespace Highworm {
-    public class Character : IMayParticipate {
-        public Character() {
-            Statistics = new Dictionary<string, decimal>();
-        }
-
+    /// <summary>
+    /// A contract to define the basic data for participation
+    /// </summary>
+    public interface IMayParticipate {
         /// <summary>
         /// The character's name.
         /// </summary>
-        public string Name {
+        string Name {
             get;
             set;
         }
 
-        public IDictionary<string, decimal> Statistics {
+        IDictionary<string, decimal> Statistics {
             get;
             set;
         }
