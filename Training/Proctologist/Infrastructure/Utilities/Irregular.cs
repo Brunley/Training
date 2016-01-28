@@ -24,7 +24,7 @@ namespace System {
         }
 
         public override void GetNonZeroBytes(byte[] data) {
-            r.GetBytes(data);
+            r.GetNonZeroBytes(data);
         }
 
         ///<summary>
