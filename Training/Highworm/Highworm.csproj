@@ -58,18 +58,13 @@
     <Compile Include="Infrastructure\Interfaces\May\IMayParticipate.cs" />
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
-    <Compile Include="Infrastructure\Utilities\View.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Models\Encounters\Battle.cs" />
     <Compile Include="View Models\Encounters\Exploration.cs" />
     <Compile Include="View Models\Participant.cs" />
-    <Compile Include="Views\Participants.cs" />
-    <Compile Include="Views\Text.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interpreters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

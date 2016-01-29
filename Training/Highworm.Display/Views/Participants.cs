@@ -63,11 +63,11 @@ namespace Highworm.Views {
                 // draw each character's statistics
                 group.NotNull(() => {
                     var skip = 0; // the number of statistics to skip
-                    for (int i = 0; i < group.FirstOrDefault().Character.Statistics.Count; i++) {
-                        group.ForEach(entry => {
+                    for (int i = 0; i < group.Take(1).Single().Character.Statistics.Count; i++) {
+                        group.EachNotNull(entry => {
                             Builder.Append(
                                 $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
-                        }); Builder.Append("\n"); skip++;
+                        }).Then(Builder, n => n.Append("\n")); skip++;
                     }
                 });
                
@@ -76,7 +76,7 @@ namespace Highworm.Views {
                     Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
                 }).Then(Builder, n => n.Append("\n"));
 
-            }); //Builder.Append("\n");
+            });
 
             // print the component
             return Builder;
