@@ -14,10 +14,8 @@ namespace Highworm.Controllers {
         /// The type of encounter to create.
         /// </typeparam>
         /// <returns></returns>
-        public IEncounter<IMayEncounter> Create<T>() where T : IEncounter<IMayEncounter> {
-            return default(T);
+        public IEncounter<IMayEncounter> Create<T>() where T :  IEncounter<IMayEncounter>, new() {
+            return new T();
         }
-
-        
     }
 }
