@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Scoreboard.Inputs {
+namespace System.Display.Inputs {
     /// <summary>
     /// A command to accept the name of a new participant.
     /// </summary>

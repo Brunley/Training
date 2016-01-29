@@ -23,13 +23,14 @@ namespace System {
         protected Printable() {
             Builder = new StringBuilder();
             Position = Position.Current;
+            Visible = true;
         }
 
         /// <summary>
         /// The printable component's cursor position.
         /// </summary>
-        protected Position Position {
-            private get;
+        private Position Position {
+            get;
             set;
         }
 
@@ -80,8 +81,13 @@ namespace System {
 
             // perform the writing process to the
             // c# console and then return to the starting position
-            Paint();
+            if(Visible) Paint();
         }
+
+        /// <summary>
+        /// Indicates whether or not the component should be drawn.
+        /// </summary>
+        public bool Visible { get; set; }
 
         /// <summary>
         /// Write the printable component to the command line and moves

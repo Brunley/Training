@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Scoreboard {
+namespace System.Display {
     /// <summary>
     /// The Header is printed at the top of the console.
     /// </summary>

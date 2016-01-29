@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Scoreboard {
+namespace System.Display {
     /// <summary>
     /// Displays all information about the current game.
     /// </summary>
@@ -19,6 +19,36 @@ namespace Highworm.Scoreboard {
         /// </summary>
         public Display() {
             Components = new Dictionary<int, Printable>();
+        }
+
+        /// <summary>
+        /// Create a new dictionary compatible key-value pair for a printable component.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of <see cref="System.Printable"/> to create.
+        /// </typeparam>
+        /// <returns></returns>
+        public static T Create<T>() where T : Printable, new() {
+            // create the new printable component
+            return new T();
+        }
+
+        /// <summary>
+        /// Create a new dictionary compatible key-value pair for a printable component.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of <see cref="System.Printable"/> to create.
+        /// </typeparam>
+        /// <param name="action">
+        /// A custom expression to execute against the <see cref="System.Printable"/>
+        /// </param>
+        /// <returns></returns>
+        public static T Create<T>(Action<T> action) where T : Printable, new() {
+            var printable = Create<T>();
+            // perform any needed context actions with the new component
+            action(printable);
+            // return the newly created and wired component
+            return printable;
         }
 
         /// <summary>

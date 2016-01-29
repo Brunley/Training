@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Scoreboard {
+namespace System.Display {
     /// <summary>
     /// An input aware command
     /// </summary>

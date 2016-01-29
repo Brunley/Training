@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
 
+using System.Display;
+using System.Display.Inputs;
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -30,15 +33,18 @@ namespace Highworm {
             // roll initiative for the encounter
             encounter.Sort("Initiative");
 
-            var display = new Highworm.Scoreboard.Display {
+            var display = new Display {
                 Components = new Dictionary<int, Printable> {
-                    { 1, new Scoreboard.Header() },
-                    { 2, new Scoreboard.Inputs.InputParticipantNameCommand() }
+                    { 1, Display.Create<Header>() },
+                    {
+                        2, Display.Create<InputParticipantNameCommand>(component => {
+                            // register the component input behavior
+                            component.Input += OnCharacterNameIsGiven;
+                        })
+                    }
                 }
             };
 
-            // register behavior for when a character name is given
-            display.Components[2].Input += OnCharacterNameIsGiven;
 
             do {
                 display.Paint();
