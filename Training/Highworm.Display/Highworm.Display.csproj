@@ -48,7 +48,6 @@
     <Compile Include="Console\Position.cs" />
     <Compile Include="Console\Printable.cs" />
     <Compile Include="Display.cs" />
-    <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

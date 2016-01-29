@@ -25,6 +25,8 @@ namespace Highworm.Displays {
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
             Builder.Append($"{"Name",5}{"Statistics",25}\n");
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
+            // Write the View
+            Builder.Append(View);
             // print the component
             Console.Write(Builder);
         }

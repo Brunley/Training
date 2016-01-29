@@ -34,7 +34,7 @@ namespace Highworm {
             };
 
 
-            do { display.Paint(); }
+            do { display.Paint(true); }
             while (true);
         }
 

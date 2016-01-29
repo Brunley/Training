@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
+public delegate void ConsoleReadEventHandler(string text);
+
 namespace Highworm.Displays {
     public abstract class Printable {
         /// <summary>
@@ -108,11 +110,11 @@ namespace Highworm.Displays {
     /// also accept an interpreter for display purposes.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Printable<T, I> : Printable where I : Interpreter<T>, new() {
+    public abstract class Printable<T, I> : Printable where I : View<T>, new() {
         /// <summary>
         /// An interpreter that may be used on data.
         /// </summary>
-        protected I Interpreter{
+        protected I View{
             get;
             set;
         }
@@ -126,18 +128,13 @@ namespace Highworm.Displays {
         /// <returns></returns>
         public Printable<T, I> Using(T data)  {
             // create a new interpreter
-            Interpreter = new I();
+            View = new I();
 
             // attempt to set the interpreter
-            if (Interpreter != null) Interpreter.Content = data;
+            if (View != null) View.Content = data;
             
             // return the existing printable
             return this;
         }
     }
-}
-
-
-namespace System {
-    public delegate void ConsoleReadEventHandler(string text);
 }

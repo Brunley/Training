@@ -64,7 +64,7 @@ namespace Highworm.Displays {
             // they are displayed in the desired order
             // and then draw each component in order
             foreach (var component in Components.OrderBy(n => n.Key))
-                component.Value.Write();
+                component.Value.Write(true, true);
         }
 
         /// <summary>

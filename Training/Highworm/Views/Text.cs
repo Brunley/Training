@@ -11,7 +11,7 @@ namespace Highworm.Views {
     /// <summary>
     /// Represents a view of a simple string.
     /// </summary>
-    public class String : Interpreter<string> {
+    public class Text : View<string> {
         /// <summary>
         /// The content that will be presented.
         /// </summary>
@@ -23,7 +23,7 @@ namespace Highworm.Views {
         /// <summary>
         /// Custom logic to display the content
         /// </summary>
-        public override void Paint() {
+        public override StringBuilder Compose() {
             throw new NotImplementedException();
         }
     }
