@@ -8,9 +8,7 @@ namespace Highworm {
     class Program {
         [STAThread]
         static void Main(string[] args) {
-            new 
-                Program().Run();
-                Console.ReadLine();
+            new Program().Run(); 
         }
 
         public void Run() {
@@ -21,17 +19,35 @@ namespace Highworm {
             var encounter = EncounterController.Create<ViewModels.Battle>();
 
             // begin creating characters
-            var characters = new List<Character>();
-
-            // use the controller to add new characters
-            characters.Add(CharacterController.Create("Amelia"));
-            characters.Add(CharacterController.Create("Daniel"));
-
+            var characters = new List<Character> {
+                CharacterController.Create("Amelia"),
+                CharacterController.Create("Daniel")
+            };
+        
             // register the characters for the encounter
             characters.ForEach(character => { encounter.Register(character); });
 
             // roll initiative for the encounter
             encounter.Sort("Initiative");
+
+            var display = new Highworm.Scoreboard.Display {
+                Components = new Dictionary<int, Printable> {
+                    { 1, new Scoreboard.Header() },
+                    { 2, new Scoreboard.Inputs.InputParticipantNameCommand() }
+                }
+            };
+
+            // register behavior for when a character name is given
+            display.Components[2].Input += OnCharacterNameIsGiven;
+
+            do {
+                display.Paint();
+            }
+            while (display.ReadLine() != "quit");
+        }
+
+        private void OnCharacterNameIsGiven(string type, string text) {
+            Console.WriteLine($"event: {type}\t{text}");
         }
 
         internal Controllers.EncounterController EncounterController { get; set; }
