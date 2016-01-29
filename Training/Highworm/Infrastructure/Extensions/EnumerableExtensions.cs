@@ -27,6 +27,19 @@ namespace System.Linq {
             if (source.Count > 0) foreach (var i in source) action(i); return source;
         }
 
+        /// <summary>
+        /// Performs an action if the given collection is not empty.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type to enumerate.
+        /// </typeparam>
+        /// <param name="source">
+        /// The List to enumerate.
+        /// </param>
+        /// <param name="action">
+        /// The action to perform.
+        /// </param>
+        /// <returns></returns>
         public static IList<T> NotNull<T>(this IList<T> source, Action action) {
             if (source.Count > 0) action(); return source;
         }
@@ -35,9 +48,18 @@ namespace System.Linq {
         /// Perform an action with a <see cref="System.Text.StringBuilder"/> if the
         /// collection is not empty.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="action"></param>
+        /// <typeparam name="T">
+        /// The type to enumerate.
+        /// </typeparam>
+        /// <param name="source">
+        /// The List to enumerate.
+        /// </param>
+        /// <param name="builder">
+        /// The <see cref="System.Text.StringBuilder"/> to use.
+        /// </param>
+        /// <param name="action">
+        /// The action to perform.
+        /// </param>
         /// <returns></returns>
         public static IList<T> Then<T>(this IList<T> source, StringBuilder builder, Action<StringBuilder> action) {
             if (source.Count > 0) action(builder); return source;
