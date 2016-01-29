@@ -56,17 +56,17 @@
     <Compile Include="Infrastructure\Interfaces\May\IMayParticipate.cs" />
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
-    <Compile Include="Interpreter.cs" />
-    <Compile Include="Interpreters\Encounter.cs" />
+    <Compile Include="Infrastructure\Utilities\Interpreter.cs" />
     <Compile Include="Models\Character.cs" />
-    <Compile Include="ParticipantNamesInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Models\Encounters\Battle.cs" />
     <Compile Include="View Models\Encounters\Exploration.cs" />
     <Compile Include="View Models\Participant.cs" />
+    <Compile Include="Views\Participants.cs" />
+    <Compile Include="Views\String.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Folder Include="Interpreters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -129,7 +129,7 @@ namespace Highworm.Displays {
             Interpreter = new I();
 
             // attempt to set the interpreter
-            if (Interpreter != null) Interpreter.Value = data;
+            if (Interpreter != null) Interpreter.Content = data;
             
             // return the existing printable
             return this;

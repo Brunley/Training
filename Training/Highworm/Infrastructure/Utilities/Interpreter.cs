@@ -19,21 +19,11 @@ namespace Highworm {
         /// <summary>
         /// The data that is going to be interpreted.
         /// </summary>
-        public abstract T Value { get; set; }
+        public abstract T Content { get; set; }
 
         /// <summary>
         /// Paints the value using the interpretation
         /// </summary>
         public abstract void Paint();
-    }
-
-    public class StringInterpreter : Interpreter<string> {
-        public override string Value {
-            get; set;
-        }
-
-        public override void Paint() {
-            throw new NotImplementedException();
-        }
     }
 }
