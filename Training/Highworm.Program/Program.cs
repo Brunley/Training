@@ -24,8 +24,7 @@ namespace Highworm {
             var display = new Displays.Display {
                 Components = new Dictionary<int, Printable> {
                     { 1, Displays.Display.Create<Header>().Using(encounter.Participants) },
-                    {
-                        2, Displays.Display.Create<InputParticipantNameCommand>(component => {
+                    { 2, Displays.Display.Create<InputParticipantNameCommand>(component => {
                             // register the component input behavior
                             component.Read += encounter.Register<Character>;
                         })
