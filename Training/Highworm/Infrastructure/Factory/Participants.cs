@@ -10,9 +10,9 @@ namespace Highworm {
     /// </summary>
     public static partial class Factory {
         /// <summary>
-        /// The character factory creates and manages characters.
+        /// The participants factory creates and manages characters.
         /// </summary>
-        public static class Character {
+        public static class Participants {
             /// <summary>
             /// Create a new participation elligible entity.
             /// </summary>
