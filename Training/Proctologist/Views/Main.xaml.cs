@@ -32,7 +32,7 @@ namespace Highworm {
             characters.ForEach(character => { encounter.Register(character); });
 
             // roll initiative for the encounter
-            EncounterController.Sort(encounter.Participants, "Initiative");
+            encounter.Sort("Initiative");
         }
 
         public Controllers.EncounterController EncounterController {

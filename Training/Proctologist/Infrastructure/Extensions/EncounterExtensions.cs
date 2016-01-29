@@ -24,5 +24,23 @@ namespace Highworm {
                 Order = 0
             });
         }
+
+        /// <summary>
+        /// Sort and order the participants based on their initiative.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of entities to sort.
+        /// </typeparam>
+        /// <param name="modifier">
+        /// The statistic to use as a modifier.
+        /// </param>
+        /// <returns></returns>
+        public static IList<IMayEncounter> Sort(this IEncounter<IMayEncounter> encounter, string modifier) {
+            // roll initiative for each participant
+            foreach (var participant in encounter.Participants)
+                participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);
+            // return the adjusted collection, sorted
+            return encounter.Participants.OrderBy(n => n.Order).ToList();
+        }
     }
 }
