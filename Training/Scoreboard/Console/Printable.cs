@@ -8,13 +8,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System {
-    public delegate void ConsoleReadEventHandler(string type, string text);
+    public delegate void ConsoleReadEventHandler(string text);
 
     public abstract class Printable {
         /// <summary>
         /// An event that is raised when new input is given
         /// </summary>
-        public event ConsoleReadEventHandler Input;
+        public event ConsoleReadEventHandler Read;
 
         /// <summary>
         /// Initialize a new printable component and setup
@@ -43,8 +43,8 @@ namespace System {
         /// <param name="text">
         /// The text given in the event
         /// </param>
-        protected void OnConsoleRead(string type, string text) {
-            Input?.Invoke(type, text);
+        protected void OnConsoleRead(string text) {
+            Read?.Invoke(text);
         }
 
         /// <summary>

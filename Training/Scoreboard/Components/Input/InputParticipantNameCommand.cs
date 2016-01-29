@@ -28,9 +28,7 @@ namespace System.Display.Inputs {
             // create the top line by repeating '-' for the entire width
             Builder.Append($"Please enter a character name: ")
                 .Write()
-                .Read(input => {
-                    OnConsoleRead(Name, input);
-                });
+                .Read(OnConsoleRead);
         }
     }
 }

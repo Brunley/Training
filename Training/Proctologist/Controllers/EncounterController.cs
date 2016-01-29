@@ -17,5 +17,6 @@ namespace Highworm.Controllers {
         public IEncounter<IMayEncounter> Create<T>() where T :  IEncounter<IMayEncounter>, new() {
             return new T();
         }
+
     }
 }

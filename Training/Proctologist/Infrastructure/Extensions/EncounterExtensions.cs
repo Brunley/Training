@@ -15,6 +15,22 @@ namespace Highworm {
         /// <param name="encounter">
         /// The encounter to register a participant for.
         /// </param>
+        /// <param name="name">
+        /// The name of a participant to register
+        /// </param>
+        public static void Register<T>(this IEncounter<IMayEncounter> encounter, string name) where T : IMayParticipate, new() {
+            encounter.Register(Factory.Character.Create<T>(name));
+        }
+
+        /// <summary>
+        /// Register a participant for an encounter
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of participants.
+        /// </typeparam>
+        /// <param name="encounter">
+        /// The encounter to register a participant for.
+        /// </param>
         /// <param name="participant">
         /// The participant to register
         /// </param>
