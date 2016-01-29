@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace System.Display.Inputs {
+namespace Highworm.Displays.Inputs {
     /// <summary>
     /// A command to accept the name of a new participant.
     /// </summary>

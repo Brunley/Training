@@ -8,11 +8,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace System.Display {
+namespace Highworm.Displays {
     /// <summary>
     /// An input aware command
     /// </summary>
-    public abstract class Input : Printable {
+    public abstract class Input : Printable<string> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>

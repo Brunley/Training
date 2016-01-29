@@ -8,11 +8,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace System.Display {
+namespace Highworm.Displays {
     /// <summary>
     /// The Header is printed at the top of the console.
     /// </summary>
-    public class Header : Printable {
+    public class Header : Printable<string> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>
@@ -20,6 +20,7 @@ namespace System.Display {
         /// A string to write at the component's cursor position.
         /// </returns>
         protected override void Paint() {
+
             // create the top line by repeating '-' for the entire width
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
             Builder.Append($"{"Name",5}{"Statistics",25}\n");

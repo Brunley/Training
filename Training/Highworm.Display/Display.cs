@@ -8,12 +8,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace System.Display {
+namespace Highworm.Displays {
     /// <summary>
     /// Displays all information about the current game.
     /// </summary>
     public class Display {
-
         /// <summary>
         /// Initialize a new game display
         /// </summary>
@@ -25,7 +24,7 @@ namespace System.Display {
         /// Create a new dictionary compatible key-value pair for a printable component.
         /// </summary>
         /// <typeparam name="T">
-        /// The type of <see cref="System.Printable"/> to create.
+        /// The type of <see cref="Printable"/> to create.
         /// </typeparam>
         /// <returns></returns>
         public static T Create<T>() where T : Printable, new() {
@@ -37,10 +36,10 @@ namespace System.Display {
         /// Create a new dictionary compatible key-value pair for a printable component.
         /// </summary>
         /// <typeparam name="T">
-        /// The type of <see cref="System.Printable"/> to create.
+        /// The type of <see cref="Printable"/> to create.
         /// </typeparam>
         /// <param name="action">
-        /// A custom expression to execute against the <see cref="System.Printable"/>
+        /// A custom expression to execute against the <see cref="Printable"/>
         /// </param>
         /// <returns></returns>
         public static T Create<T>(Action<T> action) where T : Printable, new() {

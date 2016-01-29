@@ -51,6 +51,12 @@
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Highworm.Display.Interpretation\Highworm.Display.Interpretation.csproj">
+      <Project>{685e17c6-df17-4ecd-ac80-de6c8f8f143f}</Project>
+      <Name>Highworm.Display.Interpretation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

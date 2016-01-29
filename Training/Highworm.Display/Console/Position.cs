@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace System {
+namespace Highworm.Displays {
     /// <summary>
     /// The position of the cursor.
     /// </summary>

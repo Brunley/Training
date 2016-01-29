@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace System {
-    public delegate void ConsoleReadEventHandler(string text);
-
+namespace Highworm.Displays {
     public abstract class Printable {
         /// <summary>
         /// An event that is raised when new input is given
@@ -104,4 +102,42 @@ namespace System {
             get; set;
         }
     }
+
+    /// <summary>
+    /// An abstract override of the printable class that may
+    /// also accept an interpreter for display purposes.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class Printable<T> : Printable {
+        /// <summary>
+        /// An interpreter that may be used on data.
+        /// </summary>
+        protected Interpreter<T> Interpreter {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Update a printable component to use
+        /// data for an interpreter.
+        /// </summary>
+        /// <typeparam name="I"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public Printable<T> Using<I>(T data) where I : Interpreter<T>, new() {
+            // create a new interpreter
+            Interpreter = new I();
+
+            // attempt to set the interpreter
+            if (Interpreter != null) Interpreter.Value = data;
+            
+            // return the existing printable
+            return this;
+        }
+    }
+}
+
+
+namespace System {
+    public delegate void ConsoleReadEventHandler(string text);
 }

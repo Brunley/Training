@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 
-using System.Display;
-using System.Display.Inputs;
-
 using System.Collections;
 using System.Collections.Generic;
+
+using Highworm.Displays;
+using Highworm.Displays.Inputs;
+
 
 namespace Highworm {
     class Program {
@@ -20,11 +21,11 @@ namespace Highworm {
             // design a new encounter
             var encounter = EncounterController.Create<ViewModels.Battle>();
 
-            var display = new Display {
+            var display = new Displays.Display {
                 Components = new Dictionary<int, Printable> {
-                    { 1, Display.Create<Header>() },
+                    { 1, Displays.Display.Create<Header>().Using<StringInterpreter>("test") },
                     {
-                        2, Display.Create<InputParticipantNameCommand>(component => {
+                        2, Displays.Display.Create<InputParticipantNameCommand>(component => {
                             // register the component input behavior
                             component.Read += encounter.Register<Character>;
                         })
