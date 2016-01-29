@@ -17,12 +17,5 @@ namespace Highworm.ViewModels {
         public Battle() {
             Participants = new List<IMayEncounter>();
         }
-
-        public void Register<T>(T participant) where T : IMayParticipate {
-            Participants.Add(new Participant {
-                Character = participant,
-                Order = 0
-            });
-        }
     }
 }

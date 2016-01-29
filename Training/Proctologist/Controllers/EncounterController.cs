@@ -31,7 +31,7 @@ namespace Highworm.Controllers {
         /// The statistic to use as a modifier.
         /// </param>
         /// <returns></returns>
-        public IList<T> Sort<T>(IList<T> participants, string modifier) where T : IMayEncounter {
+        public IList<T> Sort<T>(IList<T> participants, string modifier) where T : class, IMayEncounter {
             // roll initiative for each participant
             foreach (var participant in participants)
                 participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);

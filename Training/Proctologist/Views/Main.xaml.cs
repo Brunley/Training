@@ -29,9 +29,7 @@ namespace Highworm {
             characters.Add(CharacterController.Create("Daniel"));
 
             // register the characters for the encounter
-            characters.ForEach(character => {
-                encounter.Register(character);
-            });
+            characters.ForEach(character => { encounter.Register(character); });
 
             // roll initiative for the encounter
             EncounterController.Sort(encounter.Participants, "Initiative");

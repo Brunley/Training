@@ -12,12 +12,5 @@ namespace Highworm {
             get;
             set;
         }
-
-        /// <summary>
-        /// Register a participant for an encounter
-        /// </summary>
-        /// <typeparam name="N"></typeparam>
-        /// <param name="participant"></param>
-        void Register<R>(R participant) where R : IMayParticipate;
     }
 }
