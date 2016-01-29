@@ -108,11 +108,11 @@ namespace Highworm.Displays {
     /// also accept an interpreter for display purposes.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Printable<T> : Printable {
+    public abstract class Printable<T, I> : Printable where I : Interpreter<T>, new() {
         /// <summary>
         /// An interpreter that may be used on data.
         /// </summary>
-        protected Interpreter<T> Interpreter {
+        protected I Interpreter{
             get;
             set;
         }
@@ -124,7 +124,7 @@ namespace Highworm.Displays {
         /// <typeparam name="I"></typeparam>
         /// <param name="data"></param>
         /// <returns></returns>
-        public Printable<T> Using<I>(T data) where I : Interpreter<T>, new() {
+        public Printable<T, I> Using(T data)  {
             // create a new interpreter
             Interpreter = new I();
 

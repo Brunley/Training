@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Highworm.Display.Interpretation\Highworm.Display.Interpretation.csproj">
-      <Project>{685e17c6-df17-4ecd-ac80-de6c8f8f143f}</Project>
-      <Name>Highworm.Display.Interpretation</Name>
+    <ProjectReference Include="..\Highworm\Highworm.csproj">
+      <Project>{ad9de9a5-0c4a-4669-b969-dea40485e75e}</Project>
+      <Name>Highworm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

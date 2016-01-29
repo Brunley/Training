@@ -12,7 +12,7 @@ namespace Highworm.Displays {
     /// <summary>
     /// The Header is printed at the top of the console.
     /// </summary>
-    public class Header : Printable<string> {
+    public class Header : Printable<IList<IMayEncounter>, EncounterInterpreter> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>
@@ -25,7 +25,7 @@ namespace Highworm.Displays {
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
             Builder.Append($"{"Name",5}{"Statistics",25}\n");
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
-
+            Builder.Append($"{Interpreter.Value.Count}");
             // print the component
             Console.Write(Builder);
         }

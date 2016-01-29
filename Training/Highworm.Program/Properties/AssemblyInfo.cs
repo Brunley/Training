@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Highworm.Display.Interpretation")]
+[assembly: AssemblyTitle("Highworm.Program")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Highworm.Display.Interpretation")]
+[assembly: AssemblyProduct("Highworm.Program")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("685e17c6-df17-4ecd-ac80-de6c8f8f143f")]
+[assembly: Guid("1479d935-cd54-45dc-8964-735f51323354")]
 
 // Version information for an assembly consists of the following four values:
 //

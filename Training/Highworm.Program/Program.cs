@@ -12,7 +12,7 @@ namespace Highworm {
     class Program {
         [STAThread]
         static void Main(string[] args) {
-            new Program().Run(); 
+            new Program().Run();
         }
 
         public void Run() {
@@ -23,7 +23,7 @@ namespace Highworm {
 
             var display = new Displays.Display {
                 Components = new Dictionary<int, Printable> {
-                    { 1, Displays.Display.Create<Header>().Using<StringInterpreter>("test") },
+                    { 1, Displays.Display.Create<Header>().Using(encounter.Participants) },
                     {
                         2, Displays.Display.Create<InputParticipantNameCommand>(component => {
                             // register the component input behavior

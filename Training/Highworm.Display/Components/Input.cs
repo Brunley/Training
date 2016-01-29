@@ -12,7 +12,7 @@ namespace Highworm.Displays {
     /// <summary>
     /// An input aware command
     /// </summary>
-    public abstract class Input : Printable<string> {
+    public abstract class Input : Printable<string, StringInterpreter> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>

@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 
 namespace Highworm {
+
+    public interface IEncounter {
+
+    }
     /// <summary>
     /// A contract for anything that might be an encounter.
     /// </summary>
