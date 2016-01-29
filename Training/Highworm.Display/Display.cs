@@ -68,24 +68,6 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// Read a line of input from the console.
-        /// </summary>
-        /// <returns>
-        /// The text that was input
-        /// </returns>
-        public string ReadLine() {
-            return Read = Console.ReadLine();
-        }
-
-        /// <summary>
-        /// The text read from last input
-        /// </summary>
-        public string Read {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// All of the components for building the scoreboard display
         /// </summary>
         public IDictionary<int, Printable> Components {
