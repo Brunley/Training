@@ -27,14 +27,62 @@ namespace Highworm.Views {
         public override StringBuilder Compose() {
             // make sure we clear the view
             Builder.Clear();
-            // write each participant to the screen
-            foreach(var participant in Content.OrderBy(n => n.Order)) {
-                Builder.Append($"{participant.Character.Name,5}\n");
 
-                foreach(var statistic in participant.Character.Statistics) {
-                    Builder.Append($"{String.Empty,20}{statistic.Key}\n");
-                }
+            // if there is no data, then we shouldn't 
+            // try to continue
+            if (Content == null) return Builder;
+
+            // we need to draw all of the characters in
+            // batched groups, so form a collection for 
+            // them now
+            var groups = new List<List<IMayEncounter>> {
+                new List<IMayEncounter>()
+            };
+
+            // add participants to the groups, starting a 
+            // new group every 3 entries
+            for (int i = 0; i < Content.Count; i++ ) {
+                // add every 4th entry to a new group
+                if (i % 3 == 0) groups.Add(new List<IMayEncounter>());
+                // add the participant to the most recent group
+                groups.Last().Add(Content[i]);          
             }
+            if (groups.Count <= 0) return Builder;
+
+            groups.ForEach(group => {
+                // begin by drawing the top line for each character's sheet.
+                group.ForEach(entry => {
+                    Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
+                }); if(group.Count > 0) Builder.Append("\n");
+
+                // draw the character name and level for each sheet
+                group.ForEach(entry => {
+                    Builder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
+                }); if (group.Count > 0) Builder.Append("\n");
+
+                // draw the name divider for each sheet
+                group.ForEach(entry => {
+                    Builder.Append($"{'|',1}{new string('-', 30),28}{'|',1}");
+                }); if (group.Count > 0) Builder.Append("\n");
+
+                // draw each character's statistics
+                if (group.Count > 0) {
+                    var skip = 0; // the number of statistics to skip
+                    for (int i = 0; i < group.FirstOrDefault().Character.Statistics.Count; i++) {
+                        group.ForEach(entry => {
+                            Builder.Append(
+                                $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
+                        }); Builder.Append("\n"); skip++;
+                    }
+                }
+
+                // draw the bottom line of the mini-sheet
+                group.ForEach(entry => {
+                    Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
+                }); if (group.Count > 0) Builder.Append("\n");
+
+            }); //Builder.Append("\n");
+
             // print the component
             return Builder;
         }

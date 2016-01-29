@@ -50,6 +50,7 @@
     <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\EncounterController.cs" />
     <Compile Include="Infrastructure\Extensions\EncounterExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\ObjectExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Infrastructure\Factory\CharacterFactory.cs" />
     <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />

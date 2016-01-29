@@ -20,10 +20,10 @@ namespace Highworm.Displays {
         /// A string to write at the component's cursor position.
         /// </returns>
         protected override void Paint() {
-
             // create the top line by repeating '-' for the entire width
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
-            Builder.Append($"{"Name",5}{"Statistics",25}\n");
+            Builder.Append($"{"   "}The Enchanted Hills\n");
+            Builder.Append($"{"   "}Project Highworm v.01\n");
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
             // Write the View
             Builder.Append(View);

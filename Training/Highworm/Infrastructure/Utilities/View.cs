@@ -21,6 +21,7 @@ namespace Highworm {
         /// </summary>
         protected View() {
             Builder = new StringBuilder();
+            ViewBag = new Dictionary<string, dynamic>();
         }
 
         /// <summary>
@@ -45,6 +46,14 @@ namespace Highworm {
         /// A string builder used for presentation.
         /// </summary>
         protected StringBuilder Builder {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The view bag of data
+        /// </summary>
+        public IDictionary<string, dynamic> ViewBag {
             get;
             set;
         }
