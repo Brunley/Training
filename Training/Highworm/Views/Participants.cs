@@ -28,10 +28,6 @@ namespace Highworm.Views {
             // make sure we clear the view
             Builder.Clear();
 
-            // if there is no data, then we shouldn't 
-            // try to continue
-            if (Content == null) return Builder;
-
             // we need to draw all of the characters in
             // batched groups, so form a collection for 
             // them now
@@ -47,26 +43,25 @@ namespace Highworm.Views {
                 // add the participant to the most recent group
                 groups.Last().Add(Content[i]);          
             }
-            if (groups.Count <= 0) return Builder;
 
-            groups.ForEach(group => {
+            groups.EachNotNull(group => {
                 // begin by drawing the top line for each character's sheet.
-                group.ForEach(entry => {
+                group.EachNotNull(entry => {
                     Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }); if(group.Count > 0) Builder.Append("\n");
+                }).Then(Builder, n => n.Append("\n"));
 
                 // draw the character name and level for each sheet
-                group.ForEach(entry => {
+                group.EachNotNull(entry => {
                     Builder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
-                }); if (group.Count > 0) Builder.Append("\n");
+                }).Then(Builder, n => n.Append("\n"));
 
                 // draw the name divider for each sheet
-                group.ForEach(entry => {
+                group.EachNotNull(entry => {
                     Builder.Append($"{'|',1}{new string('-', 30),28}{'|',1}");
-                }); if (group.Count > 0) Builder.Append("\n");
+                }).Then(Builder, n => n.Append("\n"));
 
                 // draw each character's statistics
-                if (group.Count > 0) {
+                group.NotNull(() => {
                     var skip = 0; // the number of statistics to skip
                     for (int i = 0; i < group.FirstOrDefault().Character.Statistics.Count; i++) {
                         group.ForEach(entry => {
@@ -74,12 +69,12 @@ namespace Highworm.Views {
                                 $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
                         }); Builder.Append("\n"); skip++;
                     }
-                }
-
+                });
+               
                 // draw the bottom line of the mini-sheet
-                group.ForEach(entry => {
+                group.EachNotNull(entry => {
                     Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }); if (group.Count > 0) Builder.Append("\n");
+                }).Then(Builder, n => n.Append("\n"));
 
             }); //Builder.Append("\n");
 
