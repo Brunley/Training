@@ -8,11 +8,11 @@ namespace Highworm {
     /// <summary>
     /// The factory produces new entities.
     /// </summary>
-    public static partial class Factory {
+    public partial class Factory {
         /// <summary>
         /// The participants factory creates and manages characters.
         /// </summary>
-        public static class Participants {
+        public static class ForParticipants {
             /// <summary>
             /// Create a new participation elligible entity.
             /// </summary>

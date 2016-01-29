@@ -19,7 +19,7 @@ namespace Highworm {
         /// The name of a participant to register
         /// </param>
         public static void Register<T>(this IEncounter<IMayEncounter> encounter, string name) where T : IMayParticipate, new() {
-            encounter.Register(Factory.Participants.Create<T>(name));
+            encounter.Register(Factory.ForParticipants.Create<T>(name));
         }
 
         /// <summary>

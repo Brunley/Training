@@ -51,7 +51,7 @@
     <Compile Include="Infrastructure\Extensions\EncounterExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
-    <Compile Include="Infrastructure\Factory\Participants.cs" />
+    <Compile Include="Infrastructure\Factory\ForParticipants.cs" />
     <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />
     <Compile Include="Infrastructure\Interfaces\May\IMayEncounter.cs" />
     <Compile Include="Infrastructure\Interfaces\May\IMayParticipate.cs" />
