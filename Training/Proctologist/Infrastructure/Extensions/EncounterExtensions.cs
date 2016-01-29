@@ -31,11 +31,14 @@ namespace Highworm {
         /// <typeparam name="T">
         /// The type of entities to sort.
         /// </typeparam>
+        /// <param name="encounter">
+        /// The encounter to sort.
+        /// </param>
         /// <param name="modifier">
         /// The statistic to use as a modifier.
         /// </param>
         /// <returns></returns>
-        public static IList<IMayEncounter> Sort(this IEncounter<IMayEncounter> encounter, string modifier) {
+        public static IList<T> Sort<T>(this IEncounter<T> encounter, string modifier) where T: class, IMayEncounter {
             // roll initiative for each participant
             foreach (var participant in encounter.Participants)
                 participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);
