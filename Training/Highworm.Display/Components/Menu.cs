@@ -8,16 +8,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Displays.Inputs {
+namespace Highworm.Displays {
     /// <summary>
-    /// A command to accept the name of a new participant.
+    /// The menu is printed at the top of the console.
     /// </summary>
-    public class InputParticipantNameCommand : Input {
-        /// <summary>
-        /// The specific name and path of the input command.
-        /// </summary>
-        protected override string Name => "input.participant.name";
-
+    public class Menu : Printable<string, Views.Menu> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>
@@ -25,9 +20,10 @@ namespace Highworm.Displays.Inputs {
         /// A string to write at the component's cursor position.
         /// </returns>
         protected override void Paint() {
-            Builder.Append($"Please enter a character name: ")
-                .Write()
-                .Read(OnConsoleRead);
+            // Write the View
+            Builder.Append(View);
+            // print the component
+            Console.Write(Builder);
         }
     }
 }

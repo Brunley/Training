@@ -17,7 +17,7 @@ namespace Highworm.Displays {
         /// Initialize a new game display
         /// </summary>
         public Display() {
-            Components = new Dictionary<int, Printable>();
+            Components = new List<Printable>();
         }
 
         /// <summary>
@@ -63,14 +63,14 @@ namespace Highworm.Displays {
             // sort all of the components to make sure
             // they are displayed in the desired order
             // and then draw each component in order
-            foreach (var component in Components.OrderBy(n => n.Key))
-                component.Value.Write(true, true);
+            foreach (var component in Components)
+                component.Write(true, true);
         }
 
         /// <summary>
         /// All of the components for building the scoreboard display
         /// </summary>
-        public IDictionary<int, Printable> Components {
+        public List<Printable> Components {
             get;
             set;
         }

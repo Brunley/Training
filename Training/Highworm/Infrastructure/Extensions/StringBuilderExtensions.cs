@@ -32,6 +32,20 @@ namespace System.Text {
         }
 
         /// <summary>
+        /// Take a step before another operation.
+        /// </summary>
+        /// <param name="source">
+        /// The <see cref="System.Text.StringBuilder"/>.
+        /// </param>
+        /// <param name="method">
+        /// The method to perform.
+        /// </param>
+        /// <returns></returns>
+        public static string Then(this StringBuilder source, Func<StringBuilder> method) {
+            return method().ToString();
+        }
+
+        /// <summary>
         /// Reads the console input and performs an anonymous method with it.
         /// </summary>
         /// <param name="source">

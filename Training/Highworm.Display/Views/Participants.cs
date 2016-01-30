@@ -48,17 +48,17 @@ namespace Highworm.Views {
                 // begin by drawing the top line for each character's sheet.
                 group.EachNotNull(entry => {
                     Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }).Then(Builder, n => n.Append("\n"));
+                }).Append(Builder, "\n");
 
                 // draw the character name and level for each sheet
                 group.EachNotNull(entry => {
                     Builder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
-                }).Then(Builder, n => n.Append("\n"));
+                }).Append(Builder, "\n");
 
                 // draw the name divider for each sheet
                 group.EachNotNull(entry => {
                     Builder.Append($"{'|',1}{new string('-', 30),28}{'|',1}");
-                }).Then(Builder, n => n.Append("\n"));
+                }).Append(Builder, "\n");
 
                 // draw each character's statistics
                 group.NotNull(() => {
@@ -67,14 +67,14 @@ namespace Highworm.Views {
                         group.EachNotNull(entry => {
                             Builder.Append(
                                 $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
-                        }).Then(Builder, n => n.Append("\n")); skip++;
+                        }).Append(Builder, "\n"); skip++;
                     }
                 });
                
                 // draw the bottom line of the mini-sheet
                 group.EachNotNull(entry => {
                     Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }).Then(Builder, n => n.Append("\n"));
+                }).Append(Builder, "\n");
 
             });
 

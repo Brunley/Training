@@ -8,27 +8,30 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Displays {
+namespace Highworm.Views {
     /// <summary>
-    /// The Header is printed at the top of the console.
+    /// Represents a view of the program header.
     /// </summary>
-    public class Header : Printable<string, Views.Header> {
+    public class Header : View<string> {
         /// <summary>
-        /// The printable component's output text.
+        /// The content that will be presented.
         /// </summary>
-        /// <returns>
-        /// A string to write at the component's cursor position.
-        /// </returns>
-        protected override void Paint() {
+        public override string Content {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Custom logic to display the content
+        /// </summary>
+        public override StringBuilder Compose() {
             // create the top line by repeating '-' for the entire width
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
             Builder.Append($"{"   "}The Enchanted Hills\n");
             Builder.Append($"{"   "}Project Highworm v.01\n");
             Builder.Append($"{new string('-', Console.WindowWidth)}\r");
-            // Write the View
-            Builder.Append(View);
             // print the component
-            Console.Write(Builder);
+            return Builder;
         }
     }
 }

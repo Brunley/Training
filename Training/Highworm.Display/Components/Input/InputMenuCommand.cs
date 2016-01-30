@@ -12,11 +12,11 @@ namespace Highworm.Displays.Inputs {
     /// <summary>
     /// A command to accept the name of a new participant.
     /// </summary>
-    public class InputParticipantNameCommand : Input {
+    public class InputMenuCommand : Input {
         /// <summary>
         /// The specific name and path of the input command.
         /// </summary>
-        protected override string Name => "input.participant.name";
+        protected override string Name => "input.menu.command";
 
         /// <summary>
         /// The printable component's output text.
@@ -25,7 +25,7 @@ namespace Highworm.Displays.Inputs {
         /// A string to write at the component's cursor position.
         /// </returns>
         protected override void Paint() {
-            Builder.Append($"Please enter a character name: ")
+            Builder.Append($"Please enter a command: ")
                 .Write()
                 .Read(OnConsoleRead);
         }

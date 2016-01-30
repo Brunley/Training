@@ -38,7 +38,7 @@ namespace Highworm {
         /// </summary>
         /// <returns></returns>
         public override string ToString() {
-            return Compose().ToString();
+            return Builder.Clear().Then(Compose);
         }
 
         /// <summary>

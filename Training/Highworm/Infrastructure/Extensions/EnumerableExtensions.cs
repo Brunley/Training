@@ -61,8 +61,8 @@ namespace System.Linq {
         /// The action to perform.
         /// </param>
         /// <returns></returns>
-        public static IList<T> Then<T>(this IList<T> source, StringBuilder builder, Action<StringBuilder> action) {
-            if (source.Count > 0) action(builder); return source;
+        public static IList<T> Append<T>(this IList<T> source, StringBuilder action, string append) {
+            if (source.Count > 0) action.Append(append); return source;
         }
     }
 }
