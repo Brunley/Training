@@ -58,8 +58,8 @@ namespace Highworm.Displays {
         /// The state to initialize and set.
         /// </param>
         /// <returns></returns>
-        public Display AsState(string state) {
-            State.Set(state); return this;
+        public Display ToState(string state) {
+            State.Reset(state); return this;
         }
 
         /// <summary>

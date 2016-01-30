@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace System.Text {
+namespace Highworm {
     public static partial class StringBuilderExtensions {
         /// <summary>
         /// Take a step before another operation.
@@ -21,7 +21,7 @@ namespace System.Text {
         /// </param>
         /// <returns></returns>
         public static string Paint(this StringBuilder source, IMayPaint paintable) {
-            paintable.OnPaint(paintable.CurrentScreenState); return source.ToString();
+            paintable.OnPaint(paintable.State.Current); return source.ToString();
         }
     }
 }

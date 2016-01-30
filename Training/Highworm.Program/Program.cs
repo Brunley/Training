@@ -17,7 +17,7 @@ namespace Highworm {
 
         public void Run() {
             EncounterController = new Controllers.EncounterController();
-            Screen              = new Displays.Display().AsState("menu");
+            Screen              = new Displays.Display().ToState("menu"); 
 
             // design a new encounter
             var encounter = EncounterController.Create<ViewModels.Battle>();
@@ -26,16 +26,14 @@ namespace Highworm {
                 Displays.Display.Create<Header>(),
                 Displays.Display.Create<Menu>(),
                 Displays.Display.Create<Participants>().Using(encounter.Participants),
-                Displays.Display.Create<InputMenuCommand>(component => {
-                    component.Read += Screen.State.To;
-                })
-                .OnEmpty(Screen.State.Empty)
-                .WhenState("menu"),
-                Displays.Display.Create<InputParticipantNameCommand>(component => {
-                    component.Read += encounter.Register<Character>;
-                })
-                .OnEmpty(Screen.State.Empty)
-                .WhenState("add")
+                Displays.Display.Create<InputMenuCommand>()
+                    .OnEmpty(Screen.State.Empty)
+                    .OnRead(Screen.State.Set)
+                    .Visible("menu"),
+                Displays.Display.Create<InputParticipantNameCommand>()
+                    .OnEmpty(Screen.State.Empty)
+                    .OnRead(encounter.Register<Character>)
+                    .Visible("add")
             };
 
             do {

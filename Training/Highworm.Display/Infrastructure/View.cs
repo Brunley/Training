@@ -18,16 +18,24 @@ public delegate void ConsoleReadEventHandler(string text);
 /// </summary>
 public delegate void ConsoleReadEmptyEventHandler();
 
-/// <summary>
-/// Indicates an entity that may be painted.
-/// </summary>
-public interface IMayPaint {
-    void OnPaint(string state);
+
+namespace Highworm {
     /// <summary>
-    /// The current state of the screen
+    /// Indicates an entity that may be painted.
     /// </summary>
-    string CurrentScreenState { get; set; }
+    public interface IMayPaint {
+        void OnPaint(string state);
+
+        /// <summary>
+        /// The current state of the screen
+        /// </summary>
+        ViewState State {
+            get;
+            set;
+        }
+    }
 }
+
 
 namespace Highworm.Displays {
     public abstract class View : IMayPaint {
@@ -48,8 +56,7 @@ namespace Highworm.Displays {
         protected View() {
             ViewBuilder = new StringBuilder();
             Position = Position.Current;
-            Visible = true;
-            VisibleState = String.Empty;
+            State = new ViewState();
         }
 
         /// <summary>
@@ -106,11 +113,11 @@ namespace Highworm.Displays {
             // if the view can only be drawn on a certain state, and
             // the display is not in that state, we will not bother
             // painting it.
-            if (VisibleState.Length > 0 && state != VisibleState)
+            if (State.Visible.Length > 0 && state != State.Visible)
                 return;
 
             // set the view state
-            CurrentScreenState = state;
+            State.Set(state);
 
             // if we reach this point, then the state is valid and we
             // can paint the view
@@ -125,13 +132,7 @@ namespace Highworm.Displays {
             return ViewBuilder.Clear().Paint(this);
         }
 
-        
-
-        /// <summary>
-        /// Indicates whether or not the component should be drawn.
-        /// </summary>
-        public bool Visible { get; set; }
-
+       
         /// <summary>
         /// The <see cref="System.Text.StringBuilder"/> used to construct the output.
         /// </summary>
@@ -140,20 +141,9 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// Represents the state the View should be drawn in.
-        /// </summary>
-        /// <remarks>
-        /// This view will draw in all states if this is left empty.
-        /// </remarks>
-        protected String VisibleState {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// The current state of the screen
         /// </summary>
-        public string CurrentScreenState { get; set; }
+        public ViewState State { get; set; }
     }
 
     /// <summary>
@@ -184,8 +174,8 @@ namespace Highworm.Displays {
         /// The state that the view may be drawn in.
         /// </param>
         /// <returns></returns>
-        public View<T> WhenState(string state) {
-            VisibleState = state; return this;
+        public View<T> Visible(string state) {
+            State.Visible = state; return this;
         }
 
         /// <summary>
@@ -196,6 +186,15 @@ namespace Highworm.Displays {
         /// <returns></returns>
         public View<T> OnEmpty(ConsoleReadEmptyEventHandler action) {
             this.Empty += action; return this;
+        }
+
+        /// <summary>
+        /// Specifies what to do when input is read.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public View<T> OnRead(ConsoleReadEventHandler action) {
+            this.Read += action; return this;
         }
     }
 }
