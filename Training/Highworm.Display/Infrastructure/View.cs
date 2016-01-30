@@ -111,18 +111,17 @@ namespace Highworm.Displays {
         /// <summary>
         /// The data that is going to be interpreted.
         /// </summary>
-        public abstract T Content { get; set; }
+        protected T ViewData { get; set; }
 
         /// <summary>
         /// Update a printable component to use
         /// data for an interpreter.
         /// </summary>
-        /// <typeparam name="I"></typeparam>
         /// <param name="data"></param>
         /// <returns></returns>
         public View<T> Using(T data)  {
             // set the view data
-            Content = data;
+            ViewData = data;
             // return the existing printable
             return this;
         }

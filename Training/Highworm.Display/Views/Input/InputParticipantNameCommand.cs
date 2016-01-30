@@ -14,14 +14,6 @@ namespace Highworm.Displays.Inputs {
     /// </summary>
     public class InputParticipantNameCommand : Input {
         /// <summary>
-        /// The content that will be presented.
-        /// </summary>
-        public override string Content {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// The specific name and path of the input command.
         /// </summary>
         protected override string Name => "input.participant.name";

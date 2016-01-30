@@ -14,14 +14,6 @@ namespace Highworm.Displays {
     /// </summary>
     public class Menu : View<string> {
         /// <summary>
-        /// The content that will be presented.
-        /// </summary>
-        public override string Content {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// The printable component's output text.
         /// </summary>
         /// <returns>

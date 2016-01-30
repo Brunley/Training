@@ -13,15 +13,6 @@ namespace Highworm.Displays {
     /// The Header is printed at the top of the console.
     /// </summary>
     public class Participants : View<IList<IMayEncounter>> {
-
-        /// <summary>
-        /// The content that will be presented.
-        /// </summary>
-        public override IList<IMayEncounter> Content {
-            get;
-            set;
-        }
-
         /// <summary>
         /// The printable component's output text.
         /// </summary>
@@ -38,11 +29,11 @@ namespace Highworm.Displays {
 
             // add participants to the groups, starting a 
             // new group every 3 entries
-            for (int i = 0; i < Content.Count; i++) {
+            for (int i = 0; i < ViewData.Count; i++) {
                 // add every 4th entry to a new group
                 if (i % 3 == 0) groups.Add(new List<IMayEncounter>());
                 // add the participant to the most recent group
-                groups.Last().Add(Content[i]);
+                groups.Last().Add(ViewData[i]);
             }
 
             groups.EachNotNull(group => {
