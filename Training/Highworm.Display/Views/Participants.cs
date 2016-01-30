@@ -19,7 +19,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public override void Paint() {
+        public override void OnPaint() {
             // we need to draw all of the characters in
             // batched groups, so form a collection for 
             // them now
@@ -39,34 +39,34 @@ namespace Highworm.Displays {
             groups.EachNotNull(group => {
                 // begin by drawing the top line for each character's sheet.
                 group.EachNotNull(entry => {
-                    Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }).Append(Builder, "\n");
+                    ViewBuilder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
+                }).Append(ViewBuilder, "\n");
 
                 // draw the character name and level for each sheet
                 group.EachNotNull(entry => {
-                    Builder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
-                }).Append(Builder, "\n");
+                    ViewBuilder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
+                }).Append(ViewBuilder, "\n");
 
                 // draw the name divider for each sheet
                 group.EachNotNull(entry => {
-                    Builder.Append($"{'|',1}{new string('-', 30),28}{'|',1}");
-                }).Append(Builder, "\n");
+                    ViewBuilder.Append($"{'|',1}{new string('-', 30),28}{'|',1}");
+                }).Append(ViewBuilder, "\n");
 
                 // draw each character's statistics
                 group.NotNull(() => {
                     var skip = 0; // the number of statistics to skip
                     for (int i = 0; i < group.Take(1).Single().Character.Statistics.Count; i++) {
                         group.EachNotNull(entry => {
-                            Builder.Append(
+                            ViewBuilder.Append(
                                 $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
-                        }).Append(Builder, "\n"); skip++;
+                        }).Append(ViewBuilder, "\n"); skip++;
                     }
                 });
 
                 // draw the bottom line of the mini-sheet
                 group.EachNotNull(entry => {
-                    Builder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
-                }).Append(Builder, "\n");
+                    ViewBuilder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
+                }).Append(ViewBuilder, "\n");
 
             });
         }

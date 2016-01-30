@@ -24,8 +24,8 @@ namespace Highworm.Displays.Inputs {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public override void Paint() {
-            Builder.Append($"Please enter a command: ")
+        public override void OnPaint() {
+            ViewBuilder.Append($"Please enter a command: ")
                 .Write()
                 .Read(OnConsoleRead)
                 .Clear();

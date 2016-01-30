@@ -7,7 +7,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// Indicates a console read event
+/// </summary>
+/// <param name="text"></param>
 public delegate void ConsoleReadEventHandler(string text);
+
+/// <summary>
+/// Indicates an entity that may be painted.
+/// </summary>
+public interface IMayPaint {
+    void OnPaint();
+}
 
 namespace Highworm.Displays {
     public abstract class View : IMayPaint {
@@ -21,7 +32,7 @@ namespace Highworm.Displays {
         /// the <see cref="System.Text.StringBuilder"/>.
         /// </summary>
         protected View() {
-            Builder = new StringBuilder();
+            ViewBuilder = new StringBuilder();
             Position = Position.Current;
             Visible = true;
         }
@@ -53,7 +64,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public abstract void Paint();
+        public abstract void OnPaint();
 
         /// <summary>
         /// Write the printable component to the command line.
@@ -67,7 +78,7 @@ namespace Highworm.Displays {
         /// </param>
         public void Write(bool reset = true, bool forceUpdate = false) {
             // attempt to update the position if necessary
-            if (Builder.Length <= 0 || forceUpdate) 
+            if (ViewBuilder.Length <= 0 || forceUpdate) 
                 Position = Position.Current;
 
             // move the cursor to the component's designated
@@ -86,7 +97,7 @@ namespace Highworm.Displays {
         /// </summary>
         /// <returns></returns>
         public override string ToString() {
-            return Builder.Clear().Paint(this);
+            return ViewBuilder.Clear().Paint(this);
         }
 
         /// <summary>
@@ -97,7 +108,7 @@ namespace Highworm.Displays {
         /// <summary>
         /// The <see cref="System.Text.StringBuilder"/> used to construct the output.
         /// </summary>
-        protected StringBuilder Builder {
+        protected StringBuilder ViewBuilder {
             get; set;
         }
     }

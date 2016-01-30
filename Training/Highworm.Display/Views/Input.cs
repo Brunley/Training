@@ -19,7 +19,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public abstract override void Paint();
+        public abstract override void OnPaint();
     
         /// <summary>
         /// The specific name and path of the input command.

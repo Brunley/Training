@@ -52,7 +52,6 @@
     <Compile Include="Infrastructure\View.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
-    <Compile Include="Infrastructure\Interfaces\IMayPaint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

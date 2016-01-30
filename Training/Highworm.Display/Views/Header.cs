@@ -19,12 +19,12 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public override void Paint() {
+        public override void OnPaint() {
             // create the top line by repeating '-' for the entire width
-            Builder.Append($"{new string('-', Console.WindowWidth)}\r");
-            Builder.Append($"{"   "}The Enchanted Hills\n");
-            Builder.Append($"{"   "}Project Highworm v.01\n");
-            Builder.Append($"{new string('-', Console.WindowWidth)}\r");
+            ViewBuilder.Append($"{new string('-', Console.WindowWidth)}\r");
+            ViewBuilder.Append($"{"   "}The Enchanted Hills\n");
+            ViewBuilder.Append($"{"   "}Project Highworm v.01\n");
+            ViewBuilder.Append($"{new string('-', Console.WindowWidth)}\r");
         }
     }
 }
