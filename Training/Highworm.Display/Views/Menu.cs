@@ -19,10 +19,11 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public override void OnPaint() {
+        public override void OnPaint(string state) {
             // create the top line by repeating '-' for the entire width
-            ViewBuilder.Append($"-- Menu {new string('-', 20)}\n");
-            ViewBuilder.Append($"  [A]:\tAdd Participants\n");
+            ViewBuilder.Append($"-- Menu {new string('-', 30)}\n");
+            ViewBuilder.Append($"  {"[ ]",-6}:\tReturn to Menu\n");
+            ViewBuilder.Append($"  {"[add]",-6}:\tAdd Participants\n");
         }
     }
 }

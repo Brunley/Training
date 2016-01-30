@@ -56,8 +56,9 @@ namespace Highworm {
         /// <returns></returns>
         public static IList<T> Sort<T>(this IEncounter<T> encounter, string modifier) where T: class, IMayEncounter {
             // roll initiative for each participant
-            foreach (var participant in encounter.Participants)
-                participant.Order = new Roll(1, 20).Next().First() + (participant.Character.Statistics[modifier]);
+            encounter.Participants.ForEach(participant => {
+                participant.Order = new Roll(1, 20).Next().First() + (participant[modifier]);
+            });
             // return the adjusted collection, sorted
             return encounter.Participants.OrderBy(n => n.Order).ToList();
         }

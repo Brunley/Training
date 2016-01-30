@@ -20,5 +20,15 @@ namespace Highworm.ViewModels {
             get;
             set;
         }
+
+        /// <summary>
+        /// Shortcut indexer for statistics
+        /// </summary>
+        /// <param name="statistic"></param>
+        /// <returns></returns>
+        public decimal this[string statistic] {
+            get { return Character.Statistics[statistic]; }
+            set { Character.Statistics[statistic] = value; }
+        }
     }
 }

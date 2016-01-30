@@ -21,7 +21,7 @@ namespace System.Text {
         /// </param>
         /// <returns></returns>
         public static string Paint(this StringBuilder source, IMayPaint paintable) {
-            paintable.OnPaint(); return source.ToString();
+            paintable.OnPaint(paintable.CurrentScreenState); return source.ToString();
         }
     }
 }

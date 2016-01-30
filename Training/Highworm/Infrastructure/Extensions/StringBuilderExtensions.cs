@@ -56,10 +56,7 @@ namespace System.Text {
         /// </param>
         /// <returns></returns>
         public static StringBuilder Read(this StringBuilder source, Action<string> input) {
-            // invoke the given accepting action on the read line
-            input(Console.ReadLine());
-            // run the given input expression
-            return source;
+            input(Console.ReadLine()); return source;
         }
     }
 }

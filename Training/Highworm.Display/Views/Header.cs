@@ -19,7 +19,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public override void OnPaint() {
+        public override void OnPaint(string state) {
             // create the top line by repeating '-' for the entire width
             ViewBuilder.Append($"{new string('-', Console.WindowWidth)}\r");
             ViewBuilder.Append($"{"   "}The Enchanted Hills\n");

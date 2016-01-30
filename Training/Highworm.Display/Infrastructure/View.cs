@@ -14,10 +14,19 @@ using System.Text.RegularExpressions;
 public delegate void ConsoleReadEventHandler(string text);
 
 /// <summary>
+/// Indicates an empty input was given
+/// </summary>
+public delegate void ConsoleReadEmptyEventHandler();
+
+/// <summary>
 /// Indicates an entity that may be painted.
 /// </summary>
 public interface IMayPaint {
-    void OnPaint();
+    void OnPaint(string state);
+    /// <summary>
+    /// The current state of the screen
+    /// </summary>
+    string CurrentScreenState { get; set; }
 }
 
 namespace Highworm.Displays {
@@ -28,6 +37,11 @@ namespace Highworm.Displays {
         public event ConsoleReadEventHandler Read;
 
         /// <summary>
+        /// An event that is raised when empty input is given.
+        /// </summary>
+        public event ConsoleReadEmptyEventHandler Empty;
+
+        /// <summary>
         /// Initialize a new printable component and setup
         /// the <see cref="System.Text.StringBuilder"/>.
         /// </summary>
@@ -35,6 +49,7 @@ namespace Highworm.Displays {
             ViewBuilder = new StringBuilder();
             Position = Position.Current;
             Visible = true;
+            VisibleState = String.Empty;
         }
 
         /// <summary>
@@ -55,7 +70,8 @@ namespace Highworm.Displays {
         /// The text given in the event
         /// </param>
         protected void OnConsoleRead(string text) {
-            Read?.Invoke(text);
+            if (text.Length == 0) Empty?.Invoke();
+            else Read?.Invoke(text);
         }
 
         /// <summary>
@@ -64,7 +80,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        public abstract void OnPaint();
+        public abstract void OnPaint(string state);
 
         /// <summary>
         /// Write the printable component to the command line.
@@ -76,7 +92,7 @@ namespace Highworm.Displays {
         /// <param name="forceUpdate">
         /// Force the coordinates to update
         /// </param>
-        public void Write(bool reset = true, bool forceUpdate = false) {
+        public void Write(bool reset = true, bool forceUpdate = false, string state = "") {
             // attempt to update the position if necessary
             if (ViewBuilder.Length <= 0 || forceUpdate) 
                 Position = Position.Current;
@@ -87,9 +103,18 @@ namespace Highworm.Displays {
             //Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(new string(' ', Console.WindowWidth));
 
-            // perform the writing process to the
-            // c# console and then return to the starting position
-            if (Visible) Console.Write(this);
+            // if the view can only be drawn on a certain state, and
+            // the display is not in that state, we will not bother
+            // painting it.
+            if (VisibleState.Length > 0 && state != VisibleState)
+                return;
+
+            // set the view state
+            CurrentScreenState = state;
+
+            // if we reach this point, then the state is valid and we
+            // can paint the view
+            Console.Write(this);
         }
 
         /// <summary>
@@ -99,6 +124,8 @@ namespace Highworm.Displays {
         public override string ToString() {
             return ViewBuilder.Clear().Paint(this);
         }
+
+        
 
         /// <summary>
         /// Indicates whether or not the component should be drawn.
@@ -111,6 +138,22 @@ namespace Highworm.Displays {
         protected StringBuilder ViewBuilder {
             get; set;
         }
+
+        /// <summary>
+        /// Represents the state the View should be drawn in.
+        /// </summary>
+        /// <remarks>
+        /// This view will draw in all states if this is left empty.
+        /// </remarks>
+        protected String VisibleState {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The current state of the screen
+        /// </summary>
+        public string CurrentScreenState { get; set; }
     }
 
     /// <summary>
@@ -131,10 +174,28 @@ namespace Highworm.Displays {
         /// <param name="data"></param>
         /// <returns></returns>
         public View<T> Using(T data)  {
-            // set the view data
-            ViewData = data;
-            // return the existing printable
-            return this;
+            ViewData = data; return this;
+        }
+
+        /// <summary>
+        /// Updates the VisibleState of the View.
+        /// </summary>
+        /// <param name="state">
+        /// The state that the view may be drawn in.
+        /// </param>
+        /// <returns></returns>
+        public View<T> WhenState(string state) {
+            VisibleState = state; return this;
+        }
+
+        /// <summary>
+        /// Specifies what to do on empty input behavior
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public View<T> OnEmpty(ConsoleReadEmptyEventHandler action) {
+            this.Empty += action; return this;
         }
     }
 }

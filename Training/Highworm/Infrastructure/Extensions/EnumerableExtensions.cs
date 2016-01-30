@@ -64,5 +64,23 @@ namespace System.Linq {
         public static IList<T> Append<T>(this IList<T> source, StringBuilder action, string append) {
             if (source.Count > 0) action.Append(append); return source;
         }
+
+        /// <summary>
+        /// Performs the specified action on each element of the <see cref="System.Collections.IList"/>
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type to enumerate.
+        /// </typeparam>
+        /// <param name="source">
+        /// The List to enumerate.
+        /// </param>
+        /// <param name="action">
+        /// The action to perform.
+        /// </param>
+        /// <returns></returns>
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
+            foreach (T item in source)
+                action(item);
+        }
     }
 }

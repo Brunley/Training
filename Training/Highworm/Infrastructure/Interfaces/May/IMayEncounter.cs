@@ -8,5 +8,7 @@
             set;
         }
         decimal Order { get; set; }
+
+        decimal this[string statistic] { get; set; }
     }
 }

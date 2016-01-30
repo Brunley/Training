@@ -18,6 +18,7 @@ namespace Highworm.Displays {
         /// </summary>
         public Display() {
             Components = new List<View>();
+            State = new State();
         }
 
         /// <summary>
@@ -51,6 +52,17 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
+        /// Initialize the state and default state
+        /// </summary>
+        /// <param name="state">
+        /// The state to initialize and set.
+        /// </param>
+        /// <returns></returns>
+        public Display AsState(string state) {
+            State.Set(state); return this;
+        }
+
+        /// <summary>
         /// Paint the entire display to the screen.
         /// </summary>
         /// <param name="clear">
@@ -64,13 +76,21 @@ namespace Highworm.Displays {
             // they are displayed in the desired order
             // and then draw each component in order
             foreach (var component in Components)
-                component.Write(true, true);
+                component.Write(true, true, State.Current);
         }
 
         /// <summary>
         /// All of the components for building the scoreboard display
         /// </summary>
         public List<View> Components {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The current state of the display.
+        /// </summary>
+        public State State {
             get;
             set;
         }
