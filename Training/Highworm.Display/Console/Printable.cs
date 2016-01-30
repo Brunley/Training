@@ -53,7 +53,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        protected abstract void Paint();
+        protected abstract StringBuilder Paint();
 
         /// <summary>
         /// Write the printable component to the command line.
@@ -85,6 +85,14 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
+        /// Converts this View to a string
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() {
+            return Builder.Clear().Then(Paint);
+        }
+
+        /// <summary>
         /// Indicates whether or not the component should be drawn.
         /// </summary>
         public bool Visible { get; set; }
@@ -110,14 +118,11 @@ namespace Highworm.Displays {
     /// also accept an interpreter for display purposes.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Printable<T, I> : Printable where I : View<T>, new() {
+    public abstract class Printable<T> : Printable {
         /// <summary>
-        /// An interpreter that may be used on data.
+        /// The data that is going to be interpreted.
         /// </summary>
-        protected I View{
-            get;
-            set;
-        }
+        public abstract T Content { get; set; }
 
         /// <summary>
         /// Update a printable component to use
@@ -126,13 +131,9 @@ namespace Highworm.Displays {
         /// <typeparam name="I"></typeparam>
         /// <param name="data"></param>
         /// <returns></returns>
-        public Printable<T, I> Using(T data)  {
-            // create a new interpreter
-            View = new I();
-
-            // attempt to set the interpreter
-            if (View != null) View.Content = data;
-            
+        public Printable<T> Using(T data)  {
+            // set the view data
+            Content = data;
             // return the existing printable
             return this;
         }
