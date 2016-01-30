@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\EncounterController.cs" />
     <Compile Include="Infrastructure\Extensions\EncounterExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\Factory\ForEncounters.cs" />
     <Compile Include="Infrastructure\Factory\ForParticipants.cs" />
     <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />
     <Compile Include="Infrastructure\Interfaces\May\IMayEncounter.cs" />
@@ -63,7 +63,9 @@
     <Compile Include="View Models\Encounters\Exploration.cs" />
     <Compile Include="View Models\Participant.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

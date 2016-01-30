@@ -16,11 +16,10 @@ namespace Highworm {
         }
 
         private void Run() {
-            EncounterController = new Controllers.EncounterController();
             Screen              = new Displays.Display().ToState("menu"); 
 
             // design a new encounter
-            var encounter = EncounterController.Create<ViewModels.Battle>();
+            var encounter = Factory.ForEncounters.Create<ViewModels.Battle>();
 
             Screen.Views = new List<View> {
                 Displays.Display.Create<Header>(),
@@ -39,8 +38,7 @@ namespace Highworm {
             do { Screen.Paint(); }
             while (true);
         }
-
-        private Controllers.EncounterController EncounterController { get; set; }
+    
         private Displays.Display Screen { get; set; }
     }
 }
