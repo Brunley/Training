@@ -17,17 +17,17 @@ namespace Highworm.Displays {
         /// Initialize a new game display
         /// </summary>
         public Display() {
-            Components = new List<Printable>();
+            Components = new List<View>();
         }
 
         /// <summary>
         /// Create a new dictionary compatible key-value pair for a printable component.
         /// </summary>
         /// <typeparam name="T">
-        /// The type of <see cref="Printable"/> to create.
+        /// The type of <see cref="View"/> to create.
         /// </typeparam>
         /// <returns></returns>
-        public static T Create<T>() where T : Printable, new() {
+        public static T Create<T>() where T : View, new() {
             // create the new printable component
             return new T();
         }
@@ -36,13 +36,13 @@ namespace Highworm.Displays {
         /// Create a new dictionary compatible key-value pair for a printable component.
         /// </summary>
         /// <typeparam name="T">
-        /// The type of <see cref="Printable"/> to create.
+        /// The type of <see cref="View"/> to create.
         /// </typeparam>
         /// <param name="action">
-        /// A custom expression to execute against the <see cref="Printable"/>
+        /// A custom expression to execute against the <see cref="View"/>
         /// </param>
         /// <returns></returns>
-        public static T Create<T>(Action<T> action) where T : Printable, new() {
+        public static T Create<T>(Action<T> action) where T : View, new() {
             var printable = Create<T>();
             // perform any needed context actions with the new component
             action(printable);
@@ -70,7 +70,7 @@ namespace Highworm.Displays {
         /// <summary>
         /// All of the components for building the scoreboard display
         /// </summary>
-        public List<Printable> Components {
+        public List<View> Components {
             get;
             set;
         }

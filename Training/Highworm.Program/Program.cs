@@ -21,7 +21,7 @@ namespace Highworm {
             var encounter = EncounterController.Create<ViewModels.Battle>();
 
             var display = new Displays.Display {
-                Components = new List<Printable> {
+                Components = new List<View> {
                     Displays.Display.Create<Header>(),
                     Displays.Display.Create<Menu>(),
                     Displays.Display.Create<Participants>().Using(encounter.Participants),

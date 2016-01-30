@@ -8,11 +8,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Displays.Inputs {
+namespace Highworm.Displays {
     /// <summary>
-    /// A command to accept the name of a new participant.
+    /// The menu is printed at the top of the console.
     /// </summary>
-    public class InputParticipantNameCommand : Input {
+    public class Menu : View<string> {
         /// <summary>
         /// The content that will be presented.
         /// </summary>
@@ -22,20 +22,15 @@ namespace Highworm.Displays.Inputs {
         }
 
         /// <summary>
-        /// The specific name and path of the input command.
-        /// </summary>
-        protected override string Name => "input.participant.name";
-
-        /// <summary>
         /// The printable component's output text.
         /// </summary>
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        protected override StringBuilder Paint() {
-            return Builder.Append($"Please enter a character name: ")
-                .Write()
-                .Read(OnConsoleRead);
+        public override void Paint() {
+            // create the top line by repeating '-' for the entire width
+            Builder.Append($"-- Menu {new string('-', 20)}\n");
+            Builder.Append($"  [A]:\tAdd Participants\n");
         }
     }
 }

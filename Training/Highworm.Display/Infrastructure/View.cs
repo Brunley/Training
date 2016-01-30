@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 public delegate void ConsoleReadEventHandler(string text);
 
 namespace Highworm.Displays {
-    public abstract class Printable {
+    public abstract class View : IMayPaint {
         /// <summary>
         /// An event that is raised when new input is given
         /// </summary>
@@ -20,7 +20,7 @@ namespace Highworm.Displays {
         /// Initialize a new printable component and setup
         /// the <see cref="System.Text.StringBuilder"/>.
         /// </summary>
-        protected Printable() {
+        protected View() {
             Builder = new StringBuilder();
             Position = Position.Current;
             Visible = true;
@@ -53,7 +53,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        protected abstract StringBuilder Paint();
+        public abstract void Paint();
 
         /// <summary>
         /// Write the printable component to the command line.
@@ -69,9 +69,6 @@ namespace Highworm.Displays {
             // attempt to update the position if necessary
             if (Builder.Length <= 0 || forceUpdate) 
                 Position = Position.Current;
-            
-            // clear the previously drawn text
-            Builder.Clear();
 
             // move the cursor to the component's designated
             // coordinates, and clear the entire line so that
@@ -81,7 +78,7 @@ namespace Highworm.Displays {
 
             // perform the writing process to the
             // c# console and then return to the starting position
-            if(Visible) Paint();
+            if (Visible) Console.Write(this);
         }
 
         /// <summary>
@@ -89,21 +86,13 @@ namespace Highworm.Displays {
         /// </summary>
         /// <returns></returns>
         public override string ToString() {
-            return Builder.Clear().Then(Paint);
+            return Builder.Clear().Paint(this);
         }
 
         /// <summary>
         /// Indicates whether or not the component should be drawn.
         /// </summary>
         public bool Visible { get; set; }
-
-        /// <summary>
-        /// Write the printable component to the command line and moves
-        /// the cursor to the next line
-        /// </summary>
-        public void WriteLine() {
-            Write(true); Console.Write("\n");
-        }
 
         /// <summary>
         /// The <see cref="System.Text.StringBuilder"/> used to construct the output.
@@ -118,7 +107,7 @@ namespace Highworm.Displays {
     /// also accept an interpreter for display purposes.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Printable<T> : Printable {
+    public abstract class View<T> : View {
         /// <summary>
         /// The data that is going to be interpreted.
         /// </summary>
@@ -131,7 +120,7 @@ namespace Highworm.Displays {
         /// <typeparam name="I"></typeparam>
         /// <param name="data"></param>
         /// <returns></returns>
-        public Printable<T> Using(T data)  {
+        public View<T> Using(T data)  {
             // set the view data
             Content = data;
             // return the existing printable

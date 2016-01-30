@@ -12,14 +12,14 @@ namespace Highworm.Displays {
     /// <summary>
     /// An input aware command
     /// </summary>
-    public abstract class Input : Printable<String> {
+    public abstract class Input : View<String> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        protected abstract override StringBuilder Paint();
+        public abstract override void Paint();
     
         /// <summary>
         /// The specific name and path of the input command.

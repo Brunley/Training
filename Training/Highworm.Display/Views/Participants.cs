@@ -12,7 +12,7 @@ namespace Highworm.Displays {
     /// <summary>
     /// The Header is printed at the top of the console.
     /// </summary>
-    public class Participants : Printable<IList<IMayEncounter>> {
+    public class Participants : View<IList<IMayEncounter>> {
 
         /// <summary>
         /// The content that will be presented.
@@ -28,7 +28,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// A string to write at the component's cursor position.
         /// </returns>
-        protected override StringBuilder Paint() {
+        public override void Paint() {
             // we need to draw all of the characters in
             // batched groups, so form a collection for 
             // them now
@@ -78,11 +78,6 @@ namespace Highworm.Displays {
                 }).Append(Builder, "\n");
 
             });
-
-            // print the component
-            Console.Write(Builder);
-            // return the component
-            return Builder;
         }
     }
 }

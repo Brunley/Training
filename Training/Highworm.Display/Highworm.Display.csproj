@@ -42,15 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\Header.cs" />
-    <Compile Include="Components\Input.cs" />
-    <Compile Include="Components\Input\InputMenuCommand.cs" />
-    <Compile Include="Components\Input\InputParticipantNameCommand.cs" />
-    <Compile Include="Components\Menu.cs" />
-    <Compile Include="Components\Participants.cs" />
-    <Compile Include="Console\Position.cs" />
-    <Compile Include="Console\Printable.cs" />
+    <Compile Include="Views\Header.cs" />
+    <Compile Include="Views\Input.cs" />
+    <Compile Include="Views\Input\InputMenuCommand.cs" />
+    <Compile Include="Views\Input\InputParticipantNameCommand.cs" />
+    <Compile Include="Views\Menu.cs" />
+    <Compile Include="Views\Participants.cs" />
+    <Compile Include="Infrastructure\Position.cs" />
+    <Compile Include="Infrastructure\View.cs" />
     <Compile Include="Display.cs" />
+    <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\Interfaces\IMayPaint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +61,7 @@
       <Name>Highworm</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Elements\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System.Text {
-    public static class StringBuilderExtensions {
+    public static partial class StringBuilderExtensions {
         /// <summary>
         /// Write the <see cref="System.Text.StringBuilder"/> to the <see cref="System.Console"/>.
         /// </summary>
