@@ -17,7 +17,7 @@ namespace Highworm.Displays {
         /// Initialize a new game display
         /// </summary>
         public Display() {
-            Components = new List<View>();
+            Views = new List<View>();
             State = new State();
         }
 
@@ -75,14 +75,14 @@ namespace Highworm.Displays {
             // sort all of the components to make sure
             // they are displayed in the desired order
             // and then draw each component in order
-            foreach (var component in Components)
+            foreach (var component in Views)
                 component.Write(true, true, State.Current);
         }
 
         /// <summary>
         /// All of the components for building the scoreboard display
         /// </summary>
-        public List<View> Components {
+        public List<View> Views {
             get;
             set;
         }

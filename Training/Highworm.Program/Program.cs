@@ -15,14 +15,14 @@ namespace Highworm {
             new Program().Run();
         }
 
-        public void Run() {
+        private void Run() {
             EncounterController = new Controllers.EncounterController();
             Screen              = new Displays.Display().ToState("menu"); 
 
             // design a new encounter
             var encounter = EncounterController.Create<ViewModels.Battle>();
 
-            Screen.Components = new List<View> {
+            Screen.Views = new List<View> {
                 Displays.Display.Create<Header>(),
                 Displays.Display.Create<Menu>(),
                 Displays.Display.Create<Participants>().Using(encounter.Participants),
@@ -36,13 +36,11 @@ namespace Highworm {
                     .Visible("add")
             };
 
-            do {
-                Screen.Paint();
-            }
+            do { Screen.Paint(); }
             while (true);
         }
 
-        internal Controllers.EncounterController EncounterController { get; set; }
-        internal Displays.Display Screen { get; set; }
+        private Controllers.EncounterController EncounterController { get; set; }
+        private Displays.Display Screen { get; set; }
     }
 }
