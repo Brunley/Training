@@ -25,9 +25,10 @@ namespace Highworm.Displays {
             ViewBuilder.Append($"  {"[ ]",-6}:\tReturn to Menu\n");
             // only print the command to exit the entire program when the
             // state is at the base level.
-            ViewBuilder.ForState("root", state, builder => {
+            OnState("root", builder => {
                 builder.Append($"  {"[esc]",-6}:\tExit\n");
             });
+
             ViewBuilder.Append($"  {"[add]",-6}:\tAdd Participants\n");
         }
     }

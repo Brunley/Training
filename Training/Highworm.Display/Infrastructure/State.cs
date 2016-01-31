@@ -1,8 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Indicates a console state change
+/// </summary>
+/// <param name="state">The new state</param>
+public delegate Highworm.Displays.Display StateChangeEventHandler(string state);
+
 namespace Highworm {
     public class State {
+
+        /// <summary>
+        /// An event that is raised when state is changed
+        /// </summary>
+        public event StateChangeEventHandler Change;
+
         /// <summary>
         /// The currently set state
         /// </summary>
@@ -27,7 +39,7 @@ namespace Highworm {
         /// </param>
         /// <returns></returns>
         public void Set(string state) {
-            Current = state;
+            Current = state; OnChange(state);
         }
 
         /// <summary>
@@ -38,14 +50,22 @@ namespace Highworm {
         /// </param>
         /// <returns></returns>
         public State Reset(string state) {
-            Current = Start = state; return this;
+            Current = Start = state; OnChange(state); return this;
         }
 
         /// <summary>
         /// Return to the default state.
         /// </summary>
         public void Empty() {
-            Current = Start;
+            Current = Start; OnChange(Start);
+        }
+
+        /// <summary>
+        /// Raised whenever the state changes.
+        /// </summary>
+        /// <param name="state"></param>
+        public void OnChange(string state) {
+            Change?.Invoke(state);
         }
     }
 
@@ -85,6 +105,15 @@ namespace Highworm {
         /// <returns></returns>
         public void Set(string state) {
             Current = state;
+        }
+
+        /// <summary>
+        /// Determines whether or not the View is able to be painted.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public bool Paintable(string state) {
+            return Visible.Count <= 0 || Visible.Contains(state);
         }
     }
 }

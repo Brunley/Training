@@ -8,17 +8,26 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
+
 namespace Highworm.Displays {
     /// <summary>
     /// Displays all information about the current game.
     /// </summary>
     public class Display {
+
         /// <summary>
         /// Initialize a new game display
         /// </summary>
         public Display() {
-            Views = new List<View>();
-            State = new State();
+            Views = new List<View>(); State = new State(); State.Change += OnStateChange;
+        }
+
+        /// <summary>
+        /// Repaint the screen when state changes.
+        /// </summary>
+        /// <param name="state"></param>
+        private Display OnStateChange(string state) {
+            Increment();  Paint();  return this;
         }
 
         /// <summary>
@@ -44,11 +53,19 @@ namespace Highworm.Displays {
         /// </param>
         /// <returns></returns>
         public static T Create<T>(Action<T> action) where T : View, new() {
-            var printable = Create<T>();
-            // perform any needed context actions with the new component
-            action(printable);
-            // return the newly created and wired component
-            return printable;
+            var printable = Create<T>(); action(printable); return printable;
+        }
+
+    
+        public Display Initialize() {
+            this.Views.ForEach(n => {
+                n.Draw += OnDrawView;
+            }); return this;
+        }
+
+        private void OnDrawView(View view) {
+            if (view.Pass == Pass)
+                view.OnDraw(State.Current);
         }
 
         /// <summary>
@@ -59,9 +76,16 @@ namespace Highworm.Displays {
         /// </param>
         /// <returns></returns>
         public Display ToState(string state) {
-            State.Reset(state); return this;
+            State.Reset(state); return OnStateChange(state);
         }
 
+        public Display Synchronize() {
+            Views.ForEach(n => { n.Pass = Pass; }); return this;
+        }
+
+        public Display Increment() {
+            Pass++; return this;
+        }
         /// <summary>
         /// Paint the entire display to the screen.
         /// </summary>
@@ -70,12 +94,13 @@ namespace Highworm.Displays {
         /// </param>
         public void Paint(bool clear = true) {
             // if we need to, clear the console first
-            if(clear) Console.Clear();
+            if (clear) Console.Clear();
             // sort all of the components to make sure
             // they are displayed in the desired order
             // and then draw each component in order
-            foreach (var component in Views)
-                component.Write(true, true, State.Current);
+            Views.Where(n => n.State.Paintable(State.Current)).ForEach(view => { 
+                view.Write();
+            });
         }
 
         /// <summary>
@@ -90,6 +115,11 @@ namespace Highworm.Displays {
         /// The current state of the display.
         /// </summary>
         public State State {
+            get;
+            set;
+        }
+
+        public int Pass {
             get;
             set;
         }

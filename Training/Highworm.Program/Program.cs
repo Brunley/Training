@@ -24,17 +24,21 @@ namespace Highworm {
             Screen.Views = new List<View> {
                 Displays.Display.Create<Header>(),
                 Displays.Display.Create<Menu>(),
-                Displays.Display.Create<Participants>().Using(encounter.Participants),
+                Displays.Display.Create<Participants>()
+                    .Using(encounter.Participants),
                 Displays.Display.Create<InputMenuCommand>()
                     .OnEmpty(Screen.State.Empty)
-                    .OnRead(Screen.State.Set),
+                    .OnRead(Screen.State.Set)
+                    .OnState(new[] { String.Empty, "root", "menu" }),
                 Displays.Display.Create<InputParticipantNameCommand>()
                     .OnEmpty(Screen.State.Empty)
                     .OnRead(encounter.Register<Character>)
-                    .WhenState("add")
+                    .OnState(new[] { "add" })
             };
 
-            do { Screen.Paint(); }
+            Screen.Initialize();
+
+            do { Screen.Increment().Synchronize().Paint(); }
             while (true);
         }
     

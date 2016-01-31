@@ -19,6 +19,7 @@ public delegate void ConsoleReadEventHandler(string text);
 public delegate void ConsoleReadEmptyEventHandler();
 
 
+
 namespace Highworm {
     /// <summary>
     /// Indicates an entity that may be painted.
@@ -38,6 +39,12 @@ namespace Highworm {
 
 
 namespace Highworm.Displays {
+    /// <summary>
+    /// A delegate for view drawing.
+    /// </summary>
+    /// <param name="sender"></param>
+    public delegate void ConsoleDrawEventHandler(View sender);
+
     public abstract class View : IMayPaint {
         /// <summary>
         /// An event that is raised when new input is given
@@ -48,6 +55,11 @@ namespace Highworm.Displays {
         /// An event that is raised when empty input is given.
         /// </summary>
         public event ConsoleReadEmptyEventHandler Empty;
+
+        /// <summary>
+        /// An event that is raised when it is time to draw the view.
+        /// </summary>
+        public event ConsoleDrawEventHandler Draw;
 
         /// <summary>
         /// Initialize a new printable component and setup
@@ -67,12 +79,14 @@ namespace Highworm.Displays {
             set;
         }
 
+        public int Pass {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Raises the Input event
         /// </summary>
-        /// <param name="type">
-        /// The type of input event.
-        /// </param>
         /// <param name="text">
         /// The text given in the event
         /// </param>
@@ -89,19 +103,9 @@ namespace Highworm.Displays {
         /// </returns>
         public abstract void OnPaint(string state);
 
-        /// <summary>
-        /// Write the printable component to the command line.
-        /// </summary>
-        /// <param name="reset">
-        /// Indicates whether the cursor will return to where it started
-        /// after writing, or stay at the end of the component.
-        /// </param>
-        /// <param name="forceUpdate">
-        /// Force the coordinates to update
-        /// </param>
-        public void Write(bool reset = true, bool forceUpdate = false, string state = "") {
+        public void OnDraw(string state) {
             // attempt to update the position if necessary
-            if (ViewBuilder.Length <= 0 || forceUpdate)
+            if (ViewBuilder.Length <= 0)
                 Position = Position.Current;
 
             // move the cursor to the component's designated
@@ -121,6 +125,15 @@ namespace Highworm.Displays {
             // if we reach this point, then the state is valid and we
             // can paint the view
             Console.Write(this);
+        }
+        /// <summary>
+        /// Write the printable component to the command line.
+        /// </summary>
+        /// <param name="update">
+        /// Force the coordinates to update
+        /// </param>
+        public void Write() {
+            Draw?.Invoke(this);
         }
 
         /// <summary>
@@ -199,7 +212,7 @@ namespace Highworm.Displays {
         /// A single visible state
         /// </param>
         /// <returns></returns>
-        public View<T> WhenState(string state) {
+        public View<T> OnState(string state) {
             this.State.Visible.Add(state); return this;
         }
 
@@ -210,10 +223,23 @@ namespace Highworm.Displays {
         /// A list of visible states
         /// </param>
         /// <returns></returns>
-        public View<T> WhenState(string[] states) {
+        public View<T> OnState(string[] states) {
             states.ForEach(state => {
                 State.Visible.Add(state);
             }); return this;
+        }
+
+        /// <summary>
+        /// Writing that will only occur during given state.
+        /// </summary>
+        /// <param name="state">
+        /// The state to require
+        /// </param>
+        /// <param name="method">
+        /// The method to perform.
+        /// </param>
+        protected void OnState(string state, Action<StringBuilder> method) {
+            if (State.Current == state) method(ViewBuilder);
         }
     }
 }
