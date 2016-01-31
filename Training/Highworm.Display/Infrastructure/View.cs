@@ -43,7 +43,7 @@ namespace Highworm.Displays {
     /// A delegate for view drawing.
     /// </summary>
     /// <param name="sender"></param>
-    public delegate void ConsoleDrawEventHandler(View sender);
+    public delegate void ConsolePaintEventHandler(View sender);
 
     public abstract class View : IMayPaint {
         /// <summary>
@@ -59,7 +59,7 @@ namespace Highworm.Displays {
         /// <summary>
         /// An event that is raised when it is time to draw the view.
         /// </summary>
-        public event ConsoleDrawEventHandler Draw;
+        public event ConsolePaintEventHandler Painting;
 
         /// <summary>
         /// Initialize a new printable component and setup
@@ -103,21 +103,14 @@ namespace Highworm.Displays {
         /// </returns>
         public abstract void OnPaint(string state);
 
-        public void OnDraw(string state) {
+        /// <summary>
+        /// Draw the view with the given state.
+        /// </summary>
+        /// <param name="state"></param>
+        public void Draw(string state) {
             // attempt to update the position if necessary
             if (ViewBuilder.Length <= 0)
                 Position = Position.Current;
-
-            // move the cursor to the component's designated
-            // coordinates, and clear the entire line so that
-            // it does not bleed into existing text
-            //Console.SetCursorPosition(Position.X, Position.Y);
-            Console.Write(new string(' ', Console.WindowWidth));
-            // if the view can only be drawn on a certain state, and
-            // the display is not in that state, we will not bother
-            // painting it.
-            if (State.Visible.Count > 0 && !State.Visible.Contains(state))
-                return;
 
             // set the view state
             State.Set(state);
@@ -126,14 +119,12 @@ namespace Highworm.Displays {
             // can paint the view
             Console.Write(this);
         }
+
         /// <summary>
         /// Write the printable component to the command line.
         /// </summary>
-        /// <param name="update">
-        /// Force the coordinates to update
-        /// </param>
-        public void Write() {
-            Draw?.Invoke(this);
+        public void Paint() {
+            Painting?.Invoke(this);
         }
 
         /// <summary>

@@ -56,16 +56,23 @@ namespace Highworm.Displays {
             var printable = Create<T>(); action(printable); return printable;
         }
 
-    
+        /// <summary>
+        /// Bootstrap all of the views.
+        /// </summary>
+        /// <returns></returns>
         public Display Initialize() {
             this.Views.ForEach(n => {
-                n.Draw += OnDrawView;
+                n.Painting += OnPaintingView;
             }); return this;
         }
 
-        private void OnDrawView(View view) {
+        /// <summary>
+        /// Raised whenever a view tries to draw.
+        /// </summary>
+        /// <param name="view"></param>
+        private void OnPaintingView(View view) {
             if (view.Pass == Pass)
-                view.OnDraw(State.Current);
+                view.Draw(State.Current);
         }
 
         /// <summary>
@@ -79,10 +86,18 @@ namespace Highworm.Displays {
             State.Reset(state); return OnStateChange(state);
         }
 
+        /// <summary>
+        /// Synchronizes the view and the display refresh.
+        /// </summary>
+        /// <returns></returns>
         public Display Synchronize() {
             Views.ForEach(n => { n.Pass = Pass; }); return this;
         }
 
+        /// <summary>
+        /// Increments the display refresh.
+        /// </summary>
+        /// <returns></returns>
         public Display Increment() {
             Pass++; return this;
         }
@@ -99,7 +114,7 @@ namespace Highworm.Displays {
             // they are displayed in the desired order
             // and then draw each component in order
             Views.Where(n => n.State.Paintable(State.Current)).ForEach(view => { 
-                view.Write();
+                view.Paint();
             });
         }
 
