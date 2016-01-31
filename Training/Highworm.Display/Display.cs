@@ -71,7 +71,6 @@ namespace Highworm.Displays {
         public void Paint(bool clear = true) {
             // if we need to, clear the console first
             if(clear) Console.Clear();
-
             // sort all of the components to make sure
             // they are displayed in the desired order
             // and then draw each component in order

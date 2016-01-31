@@ -21,6 +21,7 @@ namespace Highworm {
         /// </param>
         /// <returns></returns>
         public static string Paint(this StringBuilder source, IMayPaint paintable) {
+            if (paintable.State == null) paintable.State = new ViewState();
             paintable.OnPaint(paintable.State.Current); return source.ToString();
         }
     }

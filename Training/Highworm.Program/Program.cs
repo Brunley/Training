@@ -16,23 +16,22 @@ namespace Highworm {
         }
 
         private void Run() {
-            Screen              = new Displays.Display().ToState("menu"); 
+            Screen = new Displays.Display().ToState("menu");
 
             // design a new encounter
             var encounter = Factory.ForEncounters.Create<ViewModels.Battle>();
 
             Screen.Views = new List<View> {
                 Displays.Display.Create<Header>(),
-                Displays.Display.Create<Menu>(),
+                Displays.Display.Create<Menu>().OnState("menu"),
                 Displays.Display.Create<Participants>().Using(encounter.Participants),
                 Displays.Display.Create<InputMenuCommand>()
                     .OnEmpty(Screen.State.Empty)
-                    .OnRead(Screen.State.Set)
-                    .Visible("menu"),
+                    .OnRead(Screen.State.Set),
                 Displays.Display.Create<InputParticipantNameCommand>()
                     .OnEmpty(Screen.State.Empty)
                     .OnRead(encounter.Register<Character>)
-                    .Visible("add")
+                    .OnState("add")
             };
 
             do { Screen.Paint(); }

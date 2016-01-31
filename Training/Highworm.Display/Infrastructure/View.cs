@@ -53,7 +53,7 @@ namespace Highworm.Displays {
         /// Initialize a new printable component and setup
         /// the <see cref="System.Text.StringBuilder"/>.
         /// </summary>
-        protected View() {
+        public View() {
             ViewBuilder = new StringBuilder();
             Position = Position.Current;
             State = new ViewState();
@@ -101,7 +101,7 @@ namespace Highworm.Displays {
         /// </param>
         public void Write(bool reset = true, bool forceUpdate = false, string state = "") {
             // attempt to update the position if necessary
-            if (ViewBuilder.Length <= 0 || forceUpdate) 
+            if (ViewBuilder.Length <= 0 || forceUpdate)
                 Position = Position.Current;
 
             // move the cursor to the component's designated
@@ -109,10 +109,10 @@ namespace Highworm.Displays {
             // it does not bleed into existing text
             //Console.SetCursorPosition(Position.X, Position.Y);
             Console.Write(new string(' ', Console.WindowWidth));
-
             // if the view can only be drawn on a certain state, and
             // the display is not in that state, we will not bother
             // painting it.
+
             if (State.Visible.Length > 0 && state != State.Visible)
                 return;
 
@@ -132,18 +132,22 @@ namespace Highworm.Displays {
             return ViewBuilder.Clear().Paint(this);
         }
 
-       
+
         /// <summary>
         /// The <see cref="System.Text.StringBuilder"/> used to construct the output.
         /// </summary>
         protected StringBuilder ViewBuilder {
-            get; set;
+            get;
+            set;
         }
 
         /// <summary>
         /// The current state of the screen
         /// </summary>
-        public ViewState State { get; set; }
+        public ViewState State {
+            get;
+            set;
+        }
     }
 
     /// <summary>
@@ -155,7 +159,10 @@ namespace Highworm.Displays {
         /// <summary>
         /// The data that is going to be interpreted.
         /// </summary>
-        protected T ViewData { get; set; }
+        protected T ViewData {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Update a printable component to use
@@ -163,19 +170,8 @@ namespace Highworm.Displays {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public View<T> Using(T data)  {
+        public View<T> Using(T data) {
             ViewData = data; return this;
-        }
-
-        /// <summary>
-        /// Updates the VisibleState of the View.
-        /// </summary>
-        /// <param name="state">
-        /// The state that the view may be drawn in.
-        /// </param>
-        /// <returns></returns>
-        public View<T> Visible(string state) {
-            State.Visible = state; return this;
         }
 
         /// <summary>
@@ -195,6 +191,15 @@ namespace Highworm.Displays {
         /// <returns></returns>
         public View<T> OnRead(ConsoleReadEventHandler action) {
             this.Read += action; return this;
+        }
+
+        /// <summary>
+        /// Specifies the state the view is visible in.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public View<T> OnState(string state) {
+            this.State.Visible = state; return this;
         }
     }
 }
