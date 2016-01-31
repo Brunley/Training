@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1479D935-CD54-45DC-8964-735F51323354}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A7711E06-7C82-494C-8332-E4C2E6FF1004}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Highworm.Program</RootNamespace>
-    <AssemblyName>Highworm.Program</AssemblyName>
+    <RootNamespace>Highworm.Display.Views</RootNamespace>
+    <AssemblyName>Highworm.Display.Views</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,14 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Header.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Input\InputMenuCommand.cs" />
+    <Compile Include="Input\InputParticipantNameCommand.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Participants.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Highworm.Display.Views\Highworm.Display.Views.csproj">
-      <Project>{a7711e06-7c82-494c-8332-e4c2e6ff1004}</Project>
-      <Name>Highworm.Display.Views</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Highworm.Display\Highworm.Display.csproj">
       <Project>{5e0a9c72-96b2-4c0b-bd34-592ee78b25fa}</Project>
       <Name>Highworm.Display</Name>
@@ -60,9 +59,6 @@
       <Project>{ad9de9a5-0c4a-4669-b969-dea40485e75e}</Project>
       <Name>Highworm</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
