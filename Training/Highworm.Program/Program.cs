@@ -16,27 +16,31 @@ namespace Highworm {
         }
 
         private void Run() {
-            Screen = new Displays.Display().ToState("root");
-
             // design a new encounter
             var encounter = Factory.ForEncounters.Create<ViewModels.Battle>();
 
-            Screen.Views = new List<View> {
-                Displays.Display.Create<Header>(),
-                Displays.Display.Create<Menu>(),
-                Displays.Display.Create<Participants>()
-                    .Using(encounter.Participants),
-                Displays.Display.Create<InputMenuCommand>()
-                    .OnEmpty(Screen.State.Empty)
-                    .OnRead(Screen.State.Set)
-                    .OnState(new[] { String.Empty, "root", "menu" }),
-                Displays.Display.Create<InputParticipantNameCommand>()
-                    .OnEmpty(Screen.State.Empty)
-                    .OnRead(encounter.Register<Character>)
-                    .OnState(new[] { "add" })
-            };
+            Screen = new Displays.Display()
+                .Then()
+                .Initialize("root");
 
-            Screen.Initialize();
+            Screen
+                .Then()
+                .IncludeViews(new List<View> {
+                    Displays.Display.Create<Header>(),
+                    Displays.Display.Create<Menu>(),
+                    Displays.Display.Create<Participants>()
+                        .Using(encounter.Participants),
+                    Displays.Display.Create<InputMenuCommand>()
+                        .OnEmpty(Screen.State.Empty)
+                        .OnRead(Screen.State.Set)
+                        .OnState(new[] { String.Empty, "root", "menu" }),
+                    Displays.Display.Create<InputParticipantNameCommand>()
+                        .OnEmpty(Screen.State.Empty)
+                        .OnRead(encounter.Register<Character>)
+                        .OnState(new[] { "add" })
+                })
+                .Then()
+                .Initialize();
 
             do { Screen.Increment().Synchronize().Paint(); }
             while (true);

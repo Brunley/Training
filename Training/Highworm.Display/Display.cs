@@ -19,17 +19,8 @@ namespace Highworm.Displays {
         /// Initialize a new game display
         /// </summary>
         public Display() {
-            Views = new List<View>(); State = new State(); State.Change += OnStateChange;
+            Views = new List<View>(); State = new State(); State.Change += this.OnStateChange;
         }
-
-        /// <summary>
-        /// Repaint the screen when state changes.
-        /// </summary>
-        /// <param name="state"></param>
-        private Display OnStateChange(string state) {
-            Increment();  Paint();  return this;
-        }
-
         /// <summary>
         /// Create a new dictionary compatible key-value pair for a printable component.
         /// </summary>
@@ -38,7 +29,6 @@ namespace Highworm.Displays {
         /// </typeparam>
         /// <returns></returns>
         public static T Create<T>() where T : View, new() {
-            // create the new printable component
             return new T();
         }
 
@@ -57,59 +47,20 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// Bootstrap all of the views.
-        /// </summary>
-        /// <returns></returns>
-        public Display Initialize() {
-            this.Views.ForEach(n => {
-                n.Painting += OnPaintingView;
-            }); return this;
-        }
-
-        /// <summary>
         /// Raised whenever a view tries to draw.
         /// </summary>
         /// <param name="view"></param>
-        private void OnPaintingView(View view) {
+        public void OnPaintingView(View view) {
             if (view.Pass == Pass)
                 view.Draw(State.Current);
         }
 
         /// <summary>
-        /// Initialize the state and default state
-        /// </summary>
-        /// <param name="state">
-        /// The state to initialize and set.
-        /// </param>
-        /// <returns></returns>
-        public Display ToState(string state) {
-            State.Reset(state); return OnStateChange(state);
-        }
-
-        /// <summary>
-        /// Synchronizes the view and the display refresh.
-        /// </summary>
-        /// <returns></returns>
-        public Display Synchronize() {
-            Views.ForEach(n => { n.Pass = Pass; }); return this;
-        }
-
-        /// <summary>
-        /// Increments the display refresh.
-        /// </summary>
-        /// <returns></returns>
-        public Display Increment() {
-            Pass++; return this;
-        }
-        /// <summary>
         /// Paint the entire display to the screen.
         /// </summary>
-        /// <param name="clear">
-        /// Determines whether the entire display should be cleared first
-        /// </param>
-        public void Paint(bool clear = true) {
-            // if we need to, clear the console first
-            if (clear) Console.Clear();
+        public void Paint() {
+            // clear the console first
+            Console.Clear();
             // sort all of the components to make sure
             // they are displayed in the desired order
             // and then draw each component in order
@@ -134,6 +85,9 @@ namespace Highworm.Displays {
             set;
         }
 
+        /// <summary>
+        /// Indicates what the refresh is.
+        /// </summary>
         public int Pass {
             get;
             set;
