@@ -8,7 +8,7 @@ namespace Highworm.ViewModels {
         /// <summary>
         /// The <see cref="Highworm.IMayEncounter"/> that is participating.
         /// </summary>
-        public IMayParticipate Character { get; set; }
+        public IMayParticipate Who { get; set; }
 
         /// <summary>
         /// The <see cref="Highworm.IMayEncounter"/>'s sortable turn order.
@@ -21,8 +21,8 @@ namespace Highworm.ViewModels {
         /// <param name="statistic"></param>
         /// <returns></returns>
         public decimal this[string statistic] {
-            get { return Character.Statistics[statistic]; }
-            set { Character.Statistics[statistic] = value; }
+            get { return Who.Statistics[statistic]; }
+            set { Who.Statistics[statistic] = value; }
         }
     }
 }

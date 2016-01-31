@@ -44,7 +44,7 @@ namespace Highworm.Displays {
 
                 // draw the character name and level for each sheet
                 group.EachNotNull(entry => {
-                    ViewBuilder.Append($"|{' '}{entry.Character.Name,-20}{"Lv. 50",8}{' '}{'|'}");
+                    ViewBuilder.Append($"|{' '}{entry.Who.Name,-20}{"Lv. 50",8}{' '}{'|'}");
                 }).Append(ViewBuilder, "\n");
 
                 // draw the name divider for each sheet
@@ -55,10 +55,10 @@ namespace Highworm.Displays {
                 // draw each character's statistics
                 group.NotNull(() => {
                     var skip = 0; // the number of statistics to skip
-                    for (int i = 0; i < group.Take(1).Single().Character.Statistics.Count; i++) {
+                    for (int i = 0; i < group.Take(1).Single().Who.Statistics.Count; i++) {
                         group.EachNotNull(entry => {
                             ViewBuilder.Append(
-                                $"{'|',1}{" ",1}{entry.Character.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
+                                $"{'|',1}{" ",1}{entry.Who.Statistics.Skip(skip).Take(1).SingleOrDefault().Key,-20}{'|',3}{"10",-6}{'|',1}");
                         }).Append(ViewBuilder, "\n"); skip++;
                     }
                 });

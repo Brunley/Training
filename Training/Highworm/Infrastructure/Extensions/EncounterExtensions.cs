@@ -24,10 +24,10 @@ namespace Highworm {
         /// </summary>
         /// <typeparam name="T"> The type of participants.</typeparam>
         /// <param name="encounter">The encounter to register a participant for.</param>
-        /// <param name="name">The name of a participant to register.</param>
+        /// <param name="participant">The participant to register.</param>
         public static void Register<T>(this IEncounter<IMayEncounter> encounter, T participant) where T : IMayParticipate {
             encounter.Participants.Add(new ViewModels.Participant {
-                Character = participant,
+                Who = participant,
                 Order = 0
             });
         }

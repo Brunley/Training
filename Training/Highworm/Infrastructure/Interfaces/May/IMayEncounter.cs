@@ -6,10 +6,7 @@
         /// <summary>
         /// The entity that may be part of the encounter.
         /// </summary>
-        IMayParticipate Character {
-            get;
-            set;
-        }
+        IMayParticipate Who { get; set; }
 
         /// <summary>
         /// The entities turn order.
