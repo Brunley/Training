@@ -20,12 +20,8 @@ namespace Highworm.Displays {
         /// <summary>
         /// Get a new position at the specified coordinates.
         /// </summary>
-        /// <param name="x">
-        /// The horizontal position.
-        /// </param>
-        /// <param name="y">
-        /// The vertical position.
-        /// </param>
+        /// <param name="x"> The horizontal position.</param> 
+        /// <param name="y"> The vertical position. </param>
         /// <returns>
         /// A new <see cref="Position"/>.
         /// </returns>
@@ -43,12 +39,8 @@ namespace Highworm.Displays {
         /// <summary>
         /// Initialize a new position at the given coordinates.
         /// </summary>
-        /// <param name="x">
-        /// The horizontal position.
-        /// </param>
-        /// <param name="y">
-        /// The vertical position.
-        /// </param>
+        /// <param name="x"> The horizontal position.</param> 
+        /// <param name="y"> The vertical position. </param>
         public Position(int x, int y): base() {
             X = x; Y = y;
         }
