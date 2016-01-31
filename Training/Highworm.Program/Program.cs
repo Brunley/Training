@@ -36,7 +36,7 @@ namespace Highworm {
                         .IncludeVisibleState(new[] { String.Empty, "root", "menu" }),
                     Displays.Display.Create<InputParticipantNameCommand>()
                         .OnEmpty(Screen.DisplayState.Empty)
-                        .OnRead(encounter.Register<Character>)
+                        .OnRead(encounter.Register<Models.Character>)
                         .IncludeVisibleState(new[] { "add" })
                 })
                 .Then()

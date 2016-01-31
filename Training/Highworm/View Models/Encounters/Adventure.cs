@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Highworm.ViewModels {
     /// <summary>
-    /// An encounter that may be treated as combat, perilous, etc.
+    /// An encounter that may be treated as adventurous, exploration, etc.
     /// </summary>
-    public class Battle : IEncounter<IMayEncounter> {
+    public class Adventure : IEncounter<IMayEncounter> {
         /// <summary>
         /// A collection of sortable participants.
         /// </summary>
         public IList<IMayEncounter> Participants { get; set; }
 
         /// <summary>
-        /// Initialize a new Battle with no participants.
+        /// Initialize a new adventure with no participants.
         /// </summary>
-        public Battle() {
+        public Adventure() {
             Participants = new List<IMayEncounter>();
         }
     }

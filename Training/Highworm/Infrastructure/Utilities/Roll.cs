@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace System {
+namespace Highworm {
     /// <summary>
     /// Represents a randomized roll of the dice.
     /// </summary>

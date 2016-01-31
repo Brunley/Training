@@ -6,20 +6,14 @@ namespace Highworm.ViewModels {
     /// </summary>
     public class Participant: IMayEncounter {
         /// <summary>
-        /// The character that is participating.
+        /// The <see cref="Highworm.IMayEncounter"/> that is participating.
         /// </summary>
-        public IMayParticipate Character {
-            get;
-            set;
-        }
+        public IMayParticipate Character { get; set; }
 
         /// <summary>
-        /// The character's turn order.
+        /// The <see cref="Highworm.IMayEncounter"/>'s sortable turn order.
         /// </summary>
-        public decimal Order {
-            get;
-            set;
-        }
+        public decimal Order { get; set; }
 
         /// <summary>
         /// Shortcut indexer for statistics

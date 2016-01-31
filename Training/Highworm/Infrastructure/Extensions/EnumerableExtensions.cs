@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 using System.Text;
 using System.Text.RegularExpressions;
+using Highworm;
+
 
 namespace System.Linq {
     /// <summary>
@@ -66,26 +68,26 @@ namespace System.Linq {
         }
 
         /// <summary>
-        /// Perform a given action a number of times equal to a given <see cref="System.Roll.Dice"/>.
+        /// Perform a given action a number of times equal to a given <see cref="Roll.Dice"/>.
         /// </summary>
-        /// <param name="source">The <see cref="System.Roll"/> to use as a measure.</param>
+        /// <param name="source">The <see cref="Roll"/> to use as a measure.</param>
         /// <param name="action">The action to perform.</param>
         /// <returns>
-        /// The <see cref="System.Roll"/> for method chaining.
+        /// The <see cref="Roll"/> for method chaining.
         /// </returns>
-        public static T ForEach<T>(this T source, Action action) where T : System.Roll {
+        public static T ForEach<T>(this T source, Action action) where T : Roll {
             for (int i = 0; i < source.Dice; i++) action(); return source;
         }
 
         /// <summary>
-        /// Perform a given action against a given <see cref="System.Roll.Dice"/>.
+        /// Perform a given action against a given <see cref="Roll.Dice"/>.
         /// </summary>
-        /// <param name="source">The <see cref="System.Roll"/> to use as a measure.</param>
+        /// <param name="source">The <see cref="Roll"/> to use as a measure.</param>
         /// <param name="action">The action to perform.</param>
         /// <returns>
-        /// The <see cref="System.Roll"/> for method chaining.
+        /// The <see cref="Roll"/> for method chaining.
         /// </returns>
-        public static T First<T>(this T source, Action action) where T : System.Roll {
+        public static T First<T>(this T source, Action action) where T : Roll {
             action(); return source;
         }
     }
