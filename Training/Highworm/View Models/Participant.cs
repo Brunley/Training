@@ -16,10 +16,12 @@ namespace Highworm.ViewModels {
         public decimal Order { get; set; }
 
         /// <summary>
-        /// Shortcut indexer for statistics
+        /// A simple indexer for quickly accessing the entities statistical data.
         /// </summary>
-        /// <param name="statistic"></param>
-        /// <returns></returns>
+        /// <param name="statistic">The name of the statistic to access.</param>
+        /// <returns>
+        /// The value of a statistic as a <see cref="System.Decimal"/>.
+        /// </returns>
         public decimal this[string statistic] {
             get { return Who.Statistics[statistic]; }
             set { Who.Statistics[statistic] = value; }

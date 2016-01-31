@@ -8,17 +8,11 @@ namespace Highworm {
         /// <summary>
         /// The name of the participant.
         /// </summary>
-        string Name {
-            get;
-            set;
-        }
+        string Name { get; set; }
 
         /// <summary>
         /// The participant's statistical data.
         /// </summary>
-        IDictionary<string, decimal> Statistics {
-            get;
-            set;
-        }
+        IDictionary<string, decimal> Statistics { get; set; }
     }
 }
