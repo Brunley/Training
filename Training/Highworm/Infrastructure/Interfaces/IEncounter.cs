@@ -1,20 +1,14 @@
 ﻿using System.Collections.Generic;
 
 namespace Highworm {
-
-    public interface IEncounter {
-
-    }
     /// <summary>
-    /// A contract for anything that might be an encounter.
+    /// A contract for defining a type of encounter.
     /// </summary>
-    public interface IEncounter<T> {
+    /// <typeparam name="T">A type that implements <see cref="Highworm.IMayEncounter"/></typeparam>
+    public interface IEncounter<T> where T : IMayEncounter {
         /// <summary>
-        /// The participants of the encounter.
+        /// The collection of participants.
         /// </summary>
-        IList<T> Participants {
-            get;
-            set;
-        }
+        IList<T> Participants { get; set; }
     }
 }

@@ -2,17 +2,20 @@
 
 namespace Highworm {
     /// <summary>
-    /// A contract to define the basic data for participation
+    /// A contract for defining an entity that may participate in an <see cref="Highworm.IEncounter{T}"/>.
     /// </summary>
     public interface IMayParticipate {
         /// <summary>
-        /// The character's name.
+        /// The name of the participant.
         /// </summary>
         string Name {
             get;
             set;
         }
 
+        /// <summary>
+        /// The participant's statistical data.
+        /// </summary>
         IDictionary<string, decimal> Statistics {
             get;
             set;

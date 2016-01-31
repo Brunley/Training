@@ -6,20 +6,20 @@ using System.Collections.Generic;
 
 namespace Highworm {
     /// <summary>
-    /// The factory produces new entities.
+    /// The factory produces new entities with initialized settings and properties.
     /// </summary>
     public partial class Factory {
         /// <summary>
-        /// The participants factory creates and manages characters.
+        /// A static class used to create and manage entities that inherit from <see cref="Highworm.IMayParticipate"/>.
         /// </summary>
         public static class ForParticipants {
             /// <summary>
-            /// Create a new participation elligible entity.
+            /// Create a new, empty <see cref="Highworm.IMayParticipate"/> with default data.
             /// </summary>
-            /// <param name="name">
-            /// The name of the participation elligible entity to create.
-            /// </param>
-            /// <returns></returns>
+            /// <typeparam name="T">A type that inherits from <see cref="Highworm.IMayParticipate"/>.</typeparam>
+            /// <returns>
+            /// The created <see cref="Highworm.IMayParticipate"/>.
+            /// </returns>
             public static T Create<T>(string name) where T : IMayParticipate, new() {
                 return new T() {
                     Name = name,
