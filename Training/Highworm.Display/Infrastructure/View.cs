@@ -112,8 +112,7 @@ namespace Highworm.Displays {
             // if the view can only be drawn on a certain state, and
             // the display is not in that state, we will not bother
             // painting it.
-
-            if (State.Visible.Length > 0 && state != State.Visible)
+            if (State.Visible.Count > 0 && !State.Visible.Contains(state))
                 return;
 
             // set the view state
@@ -196,10 +195,25 @@ namespace Highworm.Displays {
         /// <summary>
         /// Specifies the state the view is visible in.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state">
+        /// A single visible state
+        /// </param>
         /// <returns></returns>
-        public View<T> OnState(string state) {
-            this.State.Visible = state; return this;
+        public View<T> WhenState(string state) {
+            this.State.Visible.Add(state); return this;
+        }
+
+        /// <summary>
+        /// Specifies multiple states that the view is visible in.
+        /// </summary>
+        /// <param name="states">
+        /// A list of visible states
+        /// </param>
+        /// <returns></returns>
+        public View<T> WhenState(string[] states) {
+            states.ForEach(state => {
+                State.Visible.Add(state);
+            }); return this;
         }
     }
 }

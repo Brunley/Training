@@ -1,4 +1,7 @@
-﻿namespace Highworm {
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace Highworm {
     public class State {
         /// <summary>
         /// The currently set state
@@ -54,13 +57,13 @@
         /// Initialize a new ViewState
         /// </summary>
         public ViewState() {
-            Visible = string.Empty;
+            Visible = new List<string>();
             Current = string.Empty;
         }
         /// <summary>
         /// Indicates what state the view is visible in.
         /// </summary>
-        public string Visible {
+        public IList<string> Visible {
             get;
             set;
         }
