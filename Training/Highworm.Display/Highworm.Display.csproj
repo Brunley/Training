@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Events\Console.cs" />
     <Compile Include="Infrastructure\Extensions\DisplayExtensions.cs" />
-    <Compile Include="Infrastructure\State.cs" />
+    <Compile Include="Infrastructure\Interfaces\IMayPaint.cs" />
     <Compile Include="Views\Header.cs" />
     <Compile Include="Views\Input.cs" />
     <Compile Include="Views\Input\InputMenuCommand.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Views\Menu.cs" />
     <Compile Include="Views\Participants.cs" />
     <Compile Include="Infrastructure\Position.cs" />
-    <Compile Include="Infrastructure\View.cs" />
+    <Compile Include="View.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,14 +8,20 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Highworm.Displays {
+    /// <summary>
+    /// Methods for working with <see cref="Highworm.Displays.Display"/> entities.
+    /// </summary>
     public static partial class DisplayExtensions {
         /// <summary>
-        /// Include a collection of views.
+        /// Introduce a collection of <see cref="Highworm.Displays.View"/>s 
+        /// to the <see cref="Highworm.Displays.Display"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="display"></param>
-        /// <param name="views"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <param name="views">A collection of <see cref="Highworm.Displays.View"/>s</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T IncludeViews<T>(this T display, IList<View> views) where T : Display {
             views.ForEach(view => {
                 display.Views.Add(view); 
@@ -23,11 +29,14 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// Initialize all views in the display.
+        /// Initialize the <see cref="Highworm.Displays.View"/>s that belong to 
+        /// a <see cref="Highworm.Displays.Display"/> and wire up event handlers.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="display"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T Initialize<T>(this T display) where T : Display {
             display.Views.ForEach(view => {
                 view.Painting += display.OnPaintingView;
@@ -35,50 +44,69 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// Initialize the state and default state
+        /// Initialize the <see cref="Highworm.Displays.Display"/> and
+        /// set its default state.
         /// </summary>
-        /// <param name="state">
-        /// The state to initialize and set.
-        /// </param>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <param name="state">The state to declare as default.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T Initialize<T>(this T display, string state) where T : Display {
-            display.State.Reset(state); return display.OnStateChange(state);
+            display.DisplayState.Reset(state); return display.OnStateChange(state);
         }
 
         /// <summary>
-        /// Simple stepping extension.
+        /// A simple step that returns a non-null <see cref="Highworm.Displays.Display"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="display"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T Then<T>(this T display) where T : Display {
             return display;
         }
 
         /// <summary>
-        /// Repaint the screen when state changes.
+        /// Raised whenever the <see cref="Highworm.Displays.Display.State.Change"/>
+        /// event is fired off, indicating that the display has changed its state.
         /// </summary>
-        /// <param name="state"></param>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <param name="state">The state to declare a change to.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T OnStateChange<T>(this T display, string state) where T : Display {
             display.Increment(); display.Paint(); return display;
         }
 
         /// <summary>
-        /// Synchronize the view and the display passes.
+        /// Synchronize the refresh value of a <see cref="Highworm.Displays.Display"/> 
+        /// and all of its collected <see cref="Highworm.Displays.View"/>s.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="display"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T Synchronize<T>(this T display) where T : Display {
-            display.Views.ForEach(n => { n.Pass = display.Pass; }); return display;
+            display.Views.ForEach(n => { n.ViewRefresh = display.Refresh; }); return display;
         }
 
         /// <summary>
-        /// Increments the display refresh.
+        /// Increment the refresh value of a <see cref="Highworm.Displays.Display"/>
+        /// without synchronizing its collected <see cref="Highworm.Displays.View"/>s.
         /// </summary>
-        /// <returns></returns>
+        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
+        /// <param name="display">The display to add views to.</param>
+        /// <returns>
+        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
+        /// </returns>
         public static T Increment<T>(this T display) where T : Display {
-            display.Pass++; return display;
+            display.Refresh++; return display;
         }
     }
 }

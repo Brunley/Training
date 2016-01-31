@@ -31,13 +31,13 @@ namespace Highworm {
                     Displays.Display.Create<Participants>()
                         .Using(encounter.Participants),
                     Displays.Display.Create<InputMenuCommand>()
-                        .OnEmpty(Screen.State.Empty)
-                        .OnRead(Screen.State.Set)
-                        .OnState(new[] { String.Empty, "root", "menu" }),
+                        .OnEmpty(Screen.DisplayState.Empty)
+                        .OnRead(Screen.DisplayState.Currently)
+                        .IncludeVisibleState(new[] { String.Empty, "root", "menu" }),
                     Displays.Display.Create<InputParticipantNameCommand>()
-                        .OnEmpty(Screen.State.Empty)
+                        .OnEmpty(Screen.DisplayState.Empty)
                         .OnRead(encounter.Register<Character>)
-                        .OnState(new[] { "add" })
+                        .IncludeVisibleState(new[] { "add" })
                 })
                 .Then()
                 .Initialize();

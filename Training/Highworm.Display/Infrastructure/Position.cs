@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Highworm.Displays {
     /// <summary>
-    /// The position of the cursor.
+    /// Represents the position of the cursor on the console.
     /// </summary>
     public class Position {
 
@@ -56,17 +56,11 @@ namespace Highworm.Displays {
         /// <summary>
         /// The horizontal position.
         /// </summary>
-        public int X {
-            get;
-            set;
-        }
+        public int X { get; set; }
 
         /// <summary>
         /// The vertical position.
         /// </summary>
-        public int Y {
-            get;
-            set;
-        }
+        public int Y { get; set; }
     }
 }
