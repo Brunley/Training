@@ -27,9 +27,12 @@ namespace Highworm {
                 .Then()
                 .IncludeViews(new List<View> {
                     Displays.Display.Create<Header>(),
+                    Displays.Display.Create<Space>(),
                     Displays.Display.Create<Menu>(),
+                    Displays.Display.Create<Space>(),
                     Displays.Display.Create<Participants>()
                         .Using(encounter.Participants),
+                    Displays.Display.Create<Space>(),
                     Displays.Display.Create<InputMenuCommand>()
                         .OnEmpty(Screen.DisplayState.Empty)
                         .OnRead(Screen.DisplayState.Currently)
