@@ -20,25 +20,25 @@ namespace Highworm {
             // design a new encounter
             var encounter = Factory.ForEncounters.Create<ViewModels.Battle>();
 
-            Screen = new Displays.Display()
+            Screen = new Display()
                 .Then()
                 .Initialize("root");
 
             Screen
                 .Then()
                 .IncludeViews(new List<View> {
-                    Displays.Display.Create<Header>(),
-                    Displays.Display.Create<Space>(),
-                    Displays.Display.Create<Menu>(),
-                    Displays.Display.Create<Space>(),
-                    Displays.Display.Create<Participants>()
+                    Display.Create<Header>(),
+                    Display.Create<Space>(),
+                    Display.Create<Menu>(),
+                    Display.Create<Space>(),
+                    Display.Create<Participants>()
                         .Using(encounter.Participants),
-                    Displays.Display.Create<Space>(),
-                    Displays.Display.Create<InputMenuCommand>()
+                    Display.Create<Space>(),
+                    Display.Create<InputMenuCommand>()
                         .OnEmpty(Screen.DisplayState.Empty)
                         .OnRead(Screen.DisplayState.Currently)
                         .IncludeVisibleState(new[] { String.Empty, "root", "menu" }),
-                    Displays.Display.Create<InputParticipantNameCommand>()
+                    Display.Create<InputParticipantNameCommand>()
                         .OnEmpty(Screen.DisplayState.Empty)
                         .OnRead(encounter.Register<Models.Character>)
                         .IncludeVisibleState(new[] { "add" })
@@ -50,6 +50,6 @@ namespace Highworm {
             while (true);
         }
     
-        private Displays.Display Screen { get; set; }
+        private Display Screen { get; set; }
     }
 }
