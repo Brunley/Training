@@ -25,7 +25,7 @@ namespace Highworm {
                     Name = name,
                     Statistics = new Dictionary<string, decimal> {
                         { "Health", 20 },
-                        { "Initiative", 0 },
+                        { "Initiative", new Irregular().Next(0, 10) },
                         { "Mana", 15 },
                         { "Health Replenishment", 5 },
                         { "Mana Replenishment", 5 },

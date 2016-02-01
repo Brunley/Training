@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Highworm.Displays.Views {
     /// <summary>
-    /// This should display a blank space, for better spacing.
+    /// Display an entire blank row.
     /// </summary>
     public class Space : View<string> {
         /// <summary>
