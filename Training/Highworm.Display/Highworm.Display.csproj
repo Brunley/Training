@@ -49,7 +49,7 @@
     <Compile Include="Position.cs" />
     <Compile Include="View.cs" />
     <Compile Include="Display.cs" />
-    <Compile Include="Extensions\StringBuilder.cs" />
+    <Compile Include="Extensions\String.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

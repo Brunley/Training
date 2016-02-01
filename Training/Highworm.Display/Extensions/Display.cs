@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Highworm.Displays {
+namespace Highworm {
     /// <summary>
     /// Methods for working with <see cref="Highworm.Displays.Display"/> entities.
     /// </summary>
@@ -22,7 +22,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T IncludeViews<T>(this T display, IList<View> views) where T : Display {
+        public static T IncludeViews<T>(this T display, IList<Displays.View> views) where T : Displays.Display {
             views.ForEach(view => {
                 display.Views.Add(view); 
             }); return display;
@@ -37,7 +37,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T Initialize<T>(this T display) where T : Display {
+        public static T Initialize<T>(this T display) where T : Displays.Display {
             display.Views.ForEach(view => {
                 view.Painting += display.OnPaintingView;
             }); return display;
@@ -53,7 +53,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T Initialize<T>(this T display, string state) where T : Display {
+        public static T Initialize<T>(this T display, string state) where T : Displays.Display {
             display.DisplayState.Reset(state); return display.OnStateChange(state);
         }
 
@@ -67,7 +67,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T OnStateChange<T>(this T display, string state) where T : Display {
+        public static T OnStateChange<T>(this T display, string state) where T : Displays.Display {
             display.Increment(); display.Paint(); return display;
         }
 
@@ -80,7 +80,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T Synchronize<T>(this T display) where T : Display {
+        public static T Synchronize<T>(this T display) where T : Displays.Display {
             display.Views.ForEach(n => { n.ViewRefresh = display.Refresh; }); return display;
         }
 
@@ -93,7 +93,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
         /// </returns>
-        public static T Increment<T>(this T display) where T : Display {
+        public static T Increment<T>(this T display) where T : Displays.Display {
             display.Refresh++; return display;
         }
     }

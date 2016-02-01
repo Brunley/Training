@@ -51,7 +51,7 @@
     <Compile Include="Infrastructure\Extensions\Encounter.cs" />
     <Compile Include="Infrastructure\Extensions\Entity.cs" />
     <Compile Include="Infrastructure\Extensions\Enumerable.cs" />
-    <Compile Include="Infrastructure\Extensions\StringBuilder.cs" />
+    <Compile Include="Infrastructure\Extensions\String.cs" />
     <Compile Include="Infrastructure\Attributes\Identity.cs" />
     <Compile Include="Infrastructure\Interfaces\Has\IHasIdentity.cs" />
     <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />

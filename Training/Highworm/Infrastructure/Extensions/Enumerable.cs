@@ -7,10 +7,8 @@ using System.Collections.Generic;
 
 using System.Text;
 using System.Text.RegularExpressions;
-using Highworm;
 
-
-namespace System.Linq {
+namespace Highworm {
     /// <summary>
     /// Methods used to interact with classes that implement <see cref="System.Collections.IEnumerable"/>.
     /// </summary>
@@ -24,9 +22,8 @@ namespace System.Linq {
         /// <returns>
         /// The collection that implements <see cref="System.Collections.IList"/>.
         /// </returns>
-        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
-            foreach (T item in source)
-                action(item);
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action) {
+            var enumerable = source.ToList<T>(); enumerable.ForEach(action); return enumerable;
         }
 
         /// <summary>
@@ -65,18 +62,6 @@ namespace System.Linq {
         /// <returns></returns>
         public static IList<T> Append<T>(this IList<T> source, StringBuilder stringBuilder, string append) {
             if (source.Count > 0) stringBuilder.Append(append); return source;
-        }
-
-        /// <summary>
-        /// Perform a given action a number of times equal to a given <see cref="Roll.Dice"/>.
-        /// </summary>
-        /// <param name="source">The <see cref="Roll"/> to use as a measure.</param>
-        /// <param name="action">The action to perform.</param>
-        /// <returns>
-        /// The <see cref="Roll"/> for method chaining.
-        /// </returns>
-        public static T ForEach<T>(this T source, Action action) where T : Roll {
-            for (int i = 0; i < source.Dice; i++) action(); return source;
         }
     }
 }

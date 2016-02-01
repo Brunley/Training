@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace System.Text {
+namespace Highworm {
     /// <summary>
     /// Methods for working with <see cref="System.Text.StringBuilder"/>.
     /// </summary>
-    public static partial class StringBuilderExtensions {
+    public static partial class StringExtensions {
         /// <summary>
         /// Write the <see cref="System.Text.StringBuilder"/> to the <see cref="System.Console"/>.
         /// </summary>

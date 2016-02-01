@@ -12,7 +12,7 @@ namespace Highworm {
     /// <summary>
     /// Methods for working with <see cref="System.Text.StringBuilder"/>.
     /// </summary>
-    public static partial class StringBuilderExtensions {
+    public static partial class StringExtensions {
         /// <summary>
         /// Compose and build an entity that implements <see cref="Highworm.IMayPaint"/>, translating
         /// all of the <see cref="System.Text.StringBuilder"/> into a string.

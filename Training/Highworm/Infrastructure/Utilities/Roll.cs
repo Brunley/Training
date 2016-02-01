@@ -28,8 +28,19 @@ namespace Highworm {
         public IList<decimal> Next() {
             return this
                 .Do(() => Results = new List<decimal>())
-                .ForEach(() => Results.Add(new Irregular().Next(1, Sides)))
+                .ForEach<Roll>(() => Results.Add(new Irregular().Next(1, Sides)))
                 .Results;
+        }
+
+        /// <summary>
+        /// Perform a given action a number of times equal to a given <see cref="Roll.Dice"/>.
+        /// </summary>
+        /// <param name="action">The action to perform.</param>
+        /// <returns>
+        /// The <see cref="Roll"/> for method chaining.
+        /// </returns>
+        private T ForEach<T>(Action action) where T : Roll {
+            for (int i = 0; i < Dice; i++) action(); return this as T;
         }
 
         /// <summary>
