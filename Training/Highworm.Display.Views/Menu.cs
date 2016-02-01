@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Highworm.Displays {
+namespace Highworm.Displays.Views {
     /// <summary>
     /// The menu is printed at the top of the console.
     /// </summary>

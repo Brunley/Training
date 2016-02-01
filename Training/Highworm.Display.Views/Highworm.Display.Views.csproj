@@ -7,8 +7,8 @@
     <ProjectGuid>{A7711E06-7C82-494C-8332-E4C2E6FF1004}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Highworm.Display.Views</RootNamespace>
-    <AssemblyName>Highworm.Display.Views</AssemblyName>
+    <RootNamespace>Highworm.Displays.Views</RootNamespace>
+    <AssemblyName>Highworm.Displays.Views</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

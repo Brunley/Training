@@ -1,17 +1,17 @@
-﻿using Highworm.Displays;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Highworm.Display.Views
-{
+using System.Collections;
+using System.Collections.Generic;
+
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace Highworm.Displays.Views {
     /// <summary>
     /// This should display a blank space, for better spacing.
     /// </summary>
-    public class space : View<string>
-    {
+    public class Space : View<string> {
         /// <summary>
         /// The printable component's output text.
         /// </summary>
@@ -19,8 +19,7 @@ namespace Highworm.Display.Views
         /// A string to write at the component's cursor position.
         /// </returns>
 
-        public override void Compose(string displayState)
-        {
+        public override void Compose(string displayState) {
             ViewBuilder.Append($" \n ");
         }
     }

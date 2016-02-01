@@ -5,7 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Highworm.Displays;
-using Highworm.Displays.Inputs;
+using Highworm.Displays.Views;
+using Highworm.Displays.Views.Inputs;
 
 
 namespace Highworm {
