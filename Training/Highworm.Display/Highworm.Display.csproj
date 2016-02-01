@@ -44,12 +44,12 @@
   <ItemGroup>
     <Compile Include="Control.cs" />
     <Compile Include="Events\Console.cs" />
-    <Compile Include="Extensions\DisplayExtensions.cs" />
+    <Compile Include="Extensions\Display.cs" />
     <Compile Include="Interfaces\IMayPaint.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="View.cs" />
     <Compile Include="Display.cs" />
-    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Extensions\StringBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

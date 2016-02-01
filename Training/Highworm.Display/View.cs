@@ -241,7 +241,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the original view for chained method calls.
         /// </returns>
-        public View<T> IncludeVisibleState(string state) {
+        public View<T> AddVisibleStates(string state) {
             this.ViewState.Visible.Add(state); return this;
         }
 
@@ -253,7 +253,7 @@ namespace Highworm.Displays {
         /// <returns>
         /// Returns the original view for chained method calls.
         /// </returns>
-        public View<T> IncludeVisibleState(string[] states) {
+        public View<T> AddVisibleStates(string[] states) {
             states.ForEach(state => {
                 ViewState.Visible.Add(state);
             }); return this;

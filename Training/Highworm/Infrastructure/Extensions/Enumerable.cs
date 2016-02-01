@@ -78,17 +78,5 @@ namespace System.Linq {
         public static T ForEach<T>(this T source, Action action) where T : Roll {
             for (int i = 0; i < source.Dice; i++) action(); return source;
         }
-
-        /// <summary>
-        /// Perform a given action against a given <see cref="Roll.Dice"/>.
-        /// </summary>
-        /// <param name="source">The <see cref="Roll"/> to use as a measure.</param>
-        /// <param name="action">The action to perform.</param>
-        /// <returns>
-        /// The <see cref="Roll"/> for method chaining.
-        /// </returns>
-        public static T First<T>(this T source, Action action) where T : Roll {
-            action(); return source;
-        }
     }
 }

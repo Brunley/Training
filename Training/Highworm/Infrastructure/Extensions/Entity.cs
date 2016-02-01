@@ -56,7 +56,7 @@ namespace Highworm {
             if (attributes.Length != 0)
                 return value(attributes.FirstOrDefault().As<TAttribute>());
             // if we did not, then return a default or null value
-            return default(TValue); // this needs work.
+            return default(TValue);
         }
 
         /// <summary>
@@ -67,6 +67,70 @@ namespace Highworm {
         /// <returns>The <see cref="Highworm.IdentityAttribute.Name"/> field.</returns>
         public static string Identity<TType>(this Type type) where TType: IHasIdentity {
             return typeof(TType).Get<IdentityAttribute, string>(attribute => attribute.Name);
+        }
+
+        /// <summary>
+        /// A simple step that returns a non-null <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">A type that inherits from <typeparamref name="T"/>.</typeparam>
+        /// <param name="entity">The entity to return.</param>
+        /// <returns>
+        /// Returns the <typeparamref name="T"/> for method chaining.
+        /// </returns>
+        /// <remarks>
+        /// This method serves no functional purpose except to allow for more semantically clear
+        /// method chains.
+        /// </remarks>
+        public static T Do<T>(this T entity) {
+            return entity;
+        }
+
+        /// <summary>
+        /// Perform a given action against a given <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="entity">The <typeparamref name="T"/> to return.</param>
+        /// <param name="action">The action to perform.</param>
+        /// <returns>
+        /// Returns the <typeparamref name="T"/> for method chaining.
+        /// </returns>
+        /// <remarks>
+        /// This method serves no functional purpose except to allow for more semantically clear
+        /// method chains.
+        /// </remarks>
+        public static T Do<T>(this T entity, Action action) {
+            action(); return entity.Do();
+        }
+
+        /// <summary>
+        /// Perform a given action against a given <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="entity">The <typeparamref name="T"/> to return.</param>
+        /// <param name="action">The action to perform.</param>
+        /// <returns>
+        /// Returns the <typeparamref name="T"/> for method chaining.
+        /// </returns>
+        /// <remarks>
+        /// This method serves no functional purpose except to allow for more semantically clear
+        /// method chains.
+        /// </remarks>
+        public static T Then<T>(this T entity, Action action) {
+            return entity.Do(action);
+        }
+
+        /// <summary>
+        /// A simple step that returns a non-null <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">A type that inherits from <typeparamref name="T"/>.</typeparam>
+        /// <param name="entity">The entity to return.</param>
+        /// <returns>
+        /// Returns the <typeparamref name="T"/> for method chaining.
+        /// </returns>
+        /// <remarks>
+        /// This method serves no functional purpose except to allow for more semantically clear
+        /// method chains.
+        /// </remarks>
+        public static T Then<T>(this T entity) {
+            return entity.Do();
         }
     }
 }

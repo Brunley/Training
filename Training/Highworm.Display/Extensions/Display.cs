@@ -58,18 +58,6 @@ namespace Highworm.Displays {
         }
 
         /// <summary>
-        /// A simple step that returns a non-null <see cref="Highworm.Displays.Display"/>.
-        /// </summary>
-        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Display"/>.</typeparam>
-        /// <param name="display">The display to add views to.</param>
-        /// <returns>
-        /// Returns the <see cref="Highworm.Displays.Display"/> for method chaining.
-        /// </returns>
-        public static T Then<T>(this T display) where T : Display {
-            return display;
-        }
-
-        /// <summary>
         /// Raised whenever the <see cref="Highworm.Displays.Display.State.Change"/>
         /// event is fired off, indicating that the display has changed its state.
         /// </summary>

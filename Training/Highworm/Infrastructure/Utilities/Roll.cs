@@ -16,8 +16,7 @@ namespace Highworm {
         /// <param name="dice">The number of dice to roll.</param>
         /// <param name="sides">The number of sides on each die.</param>
         public Roll(int dice, int sides) {
-            this.Dice = dice;
-            this.Sides = sides;
+            Dice = dice; Sides = sides;
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace Highworm {
         /// </returns>
         public IList<decimal> Next() {
             return this
-                .First(() => Results = new List<decimal>())
+                .Do(() => Results = new List<decimal>())
                 .ForEach(() => Results.Add(new Irregular().Next(1, Sides)))
                 .Results;
         }
@@ -39,7 +38,7 @@ namespace Highworm {
         /// <remarks>
         /// The results will be a collection of rolls, one for each die rolled.
         /// </remarks>
-        protected IList<decimal> Results { get; set; }
+        private IList<decimal> Results { get; set; }
 
         /// <summary>
         /// The number of dice to roll.

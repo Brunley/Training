@@ -15,7 +15,7 @@ namespace Highworm {
         /// <summary>
         /// Retrieve a new identity for the given type.
         /// </summary>
-        /// <param name="type">The type to retrieve an identity for.</param>
+        /// <typeparam name="T">A type that implements <see cref="Highworm.IMayEncounter"/></typeparam>
         /// <returns>
         /// A new identity for the given type.
         /// </returns>
