@@ -23,40 +23,59 @@ namespace Highworm.Displays {
         private int Count { get; set; }
 
         /// <summary>
-        /// A collection of pens to use for writing to the screen.
+        /// A collection of rows to use for writing to the screen.
         /// </summary>
-        private IList<Pen> Pens { get; set; }
+        private IList<IList<Cell>> Rows { get; set; }
 
         /// <summary>
-        /// Initialize a new control with a collection of pens.
+        /// Initialize a new control with a collection of rows.
         /// </summary>
         /// <param name="width">The width to create the control with.</param>
         public Control(int width = 45) {
-            Pens = new List<Pen>(); Width = width; Count = 0;
+            Rows = new List<IList<Cell>> {
+                new List<Cell>()
+            }; Width = width; Count = 0;
         }
 
         /// <summary>
-        /// Write a new <see cref="Highworm.Displays.Control.Pen"/> to
-        /// the <see cref="Highworm.Displays.Control"/>.
+        /// Write a new <see cref="Cell"/> to the <see cref="Highworm.Displays.Control"/>.
         /// </summary>
-        /// <typeparam name="T">A type that inherits from <see cref="Highworm.Displays.Control.Pen"/></typeparam>
-        /// <param name="pen">A type that inherits from <see cref="Highworm.Displays.Control.Pen"/></param>
+        /// <typeparam name="T">A type that inherits from <see cref="Cell"/></typeparam>
+        /// <param name="cell">A type that inherits from <see cref="Cell"/></param>
         /// <returns>The current <see cref="Highworm.Displays.Control"/>.</returns>
-        public Control Write<T>(T pen) where T : Pen {
-            Pens.Add( pen.Order(Count++) ); return this;
+        public Control Write<T>(T cell) where T : Cell {
+            Rows.Last().Add( cell.Order(Count++) ); return this;
         }
 
         /// <summary>
-        /// Represents a pen that will draw to the screen.
+        /// Write a new line of <see cref="Cell"/>s to the <see cref="Highworm.Displays.Control"/>.
         /// </summary>
-        public class Pen {
+        /// <typeparam name="T">A type that inherits from <see cref="Cell"/></typeparam>
+        /// <param name="cell">A type that inherits from <see cref="Cell"/></param>
+        /// <returns>The current <see cref="Highworm.Displays.Control"/>.</returns>
+        public Control WriteLine<T>(T cell) where T : Cell {
+            Rows.Add(new List<Cell>()); return Write(cell);
+        }
+
+        /// <summary>
+        /// Write a new line of <see cref="Cell"/>s to the <see cref="Highworm.Displays.Control"/>.
+        /// </summary>
+        /// <returns>The current <see cref="Highworm.Displays.Control"/>.</returns>
+        public Control WriteLine() {
+            Rows.Add(new List<Cell>()); return this;
+        }
+
+        /// <summary>
+        /// Represents a cell that will draw to the screen.
+        /// </summary>
+        public class Cell {
             /// <summary>
-            /// The number of columns this pen will span.
+            /// The number of columns this cell will span.
             /// </summary>
             private int Columns { get; set; }
 
             /// <summary>
-            /// The pen's index in the collection.
+            /// The cell's index in the collection.
             /// </summary>
             private int Index { get; set; }
 
@@ -74,7 +93,7 @@ namespace Highworm.Displays {
             private bool Left { get; set; }
 
             /// <summary>
-            /// A <see cref="System.Text.StringBuilder"/> representing the current text.
+            /// A <see cref="System.String"/> representing the current text.
             /// </summary>
             private string Text { get; set; }
 
@@ -82,16 +101,15 @@ namespace Highworm.Displays {
             /// Update the index order for the drawing utility.
             /// </summary>
             /// <param name="index">The index to set.</param>
-            /// <returns>The existing pen with an updated index.</returns>
-            internal Pen Order(int index) {
+            /// <returns>The existing cell with an updated index.</returns>
+            internal Cell Order(int index) {
                 Index = index; return this;
             }
 
             /// <summary>
-            /// Initialize a new pen with the given text and the
+            /// Initialize a new cell with the given text and the
             /// specified column span.
             /// </summary>
-            /// <param name="index">The pen's index count.</param>
             /// <param name="text">The text to write.</param>
             /// <param name="count">Whether to count the number of characters for column sizing.</param>
             /// <param name="columns">The amount of columns to span.</param>
@@ -99,7 +117,7 @@ namespace Highworm.Displays {
             /// <remarks>
             /// If the columns field is left empty, the control will dynamically size.
             /// </remarks>
-            public Pen(string text, bool count = false, int columns = 0, bool left = false) {
+            public Cell(string text, bool count = false, int columns = 0, bool left = false) {
                 Text = text; Count = count; Columns = columns; Left = left;
             }
         }

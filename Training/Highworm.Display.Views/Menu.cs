@@ -32,7 +32,7 @@ namespace Highworm.Displays.Views {
             ViewBuilder.Append($"  {"[add]",-6}:\tAdd Participants\n");
 
             OnlyDuringState("add", builder => {
-                builder.Append($" {"[edit]",-6}:\tEdit Participant\n");
+                builder.Append($"  {"[edit]",-6}:\tEdit Participant\n");
             });
         
         }
