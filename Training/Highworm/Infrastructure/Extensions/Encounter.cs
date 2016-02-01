@@ -16,7 +16,7 @@ namespace Highworm {
         /// <param name="encounter">The encounter to register a participant for.</param>
         /// <param name="name">The name of a participant to register.</param>
         public static void Register<T>(this IEncounter<IMayEncounter> encounter, string name) where T : IMayParticipate, new() {
-            encounter.Register(Factory.ForParticipants.Create<T>(name));
+            encounter.Register(Models.Character.Create<T>(name));
         }
 
         /// <summary>
@@ -28,7 +28,8 @@ namespace Highworm {
         public static void Register<T>(this IEncounter<IMayEncounter> encounter, T participant) where T : IMayParticipate {
             encounter.Participants.Add(new ViewModels.Participant {
                 Who = participant,
-                Order = 0
+                Order = 0,
+                Id = encounter.Identity<T>().Next()
             });
         }
 

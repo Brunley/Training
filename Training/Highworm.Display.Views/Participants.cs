@@ -65,7 +65,7 @@ namespace Highworm.Displays.Views {
 
                 // draw the bottom line of the mini-sheet
                 group.EachNotNull(entry => {
-                    ViewBuilder.Append($"{' ',1}{new string('-', 30),28}{' ',1}");
+                    ViewBuilder.Append($"{' ',1}{new string('-', 30),28}{' ',1}\n");
                 }).Append(ViewBuilder, "\n");
 
             });

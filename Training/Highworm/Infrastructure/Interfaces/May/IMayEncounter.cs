@@ -2,7 +2,7 @@
     /// <summary>
     /// A contract for defining an entity that may become part of an <see cref="Highworm.IEncounter{T}"/>.
     /// </summary>
-    public interface IMayEncounter {
+    public interface IMayEncounter : IHasIdentity {
         /// <summary>
         /// The entity that may be part of the encounter.
         /// </summary>

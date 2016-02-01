@@ -47,25 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Extensions\EncounterExtensions.cs" />
-    <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Infrastructure\Extensions\StringBuilderExtensions.cs" />
-    <Compile Include="Infrastructure\Factory\ForEncounters.cs" />
-    <Compile Include="Infrastructure\Factory\ForParticipants.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Infrastructure\Attributes\Mode.cs" />
+    <Compile Include="Infrastructure\Extensions\Encounter.cs" />
+    <Compile Include="Infrastructure\Extensions\Entity.cs" />
+    <Compile Include="Infrastructure\Extensions\Enumerable.cs" />
+    <Compile Include="Infrastructure\Extensions\StringBuilder.cs" />
+    <Compile Include="Infrastructure\Attributes\Identity.cs" />
+    <Compile Include="Infrastructure\Interfaces\Has\IHasIdentity.cs" />
     <Compile Include="Infrastructure\Interfaces\IEncounter.cs" />
     <Compile Include="Infrastructure\Interfaces\May\IMayEncounter.cs" />
     <Compile Include="Infrastructure\Interfaces\May\IMayParticipate.cs" />
+    <Compile Include="Infrastructure\Utilities\HiLo.cs" />
     <Compile Include="Infrastructure\Utilities\Irregular.cs" />
     <Compile Include="Infrastructure\Utilities\Roll.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Encounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View Models\Encounters\Battle.cs" />
     <Compile Include="View Models\Encounters\Adventure.cs" />
     <Compile Include="View Models\Participant.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

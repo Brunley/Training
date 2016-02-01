@@ -12,7 +12,7 @@ namespace Highworm.Displays.Views.Inputs {
     /// <summary>
     /// A command to accept the name of a new participant.
     /// </summary>
-    public class InputParticipantNameCommand : Input {
+    public class InputParticipantNameCommand : Displays.Input {
         /// <summary>
         /// The specific name and path of the input command.
         /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace System {
+namespace Highworm {
     ///<summary>
     /// Represents a pseudo-random number generator, a device that produces random data.
     ///</summary>

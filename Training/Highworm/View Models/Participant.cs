@@ -4,7 +4,8 @@ namespace Highworm.ViewModels {
     /// <summary>
     /// A participant in an encounter.
     /// </summary>
-    public class Participant: IMayEncounter {
+    [Identity("players")]
+    public class Participant: IMayEncounter, IHasIdentity {
         /// <summary>
         /// The <see cref="Highworm.IMayEncounter"/> that is participating.
         /// </summary>
@@ -14,6 +15,11 @@ namespace Highworm.ViewModels {
         /// The <see cref="Highworm.IMayEncounter"/>'s sortable turn order.
         /// </summary>
         public decimal Order { get; set; }
+
+        /// <summary>
+        /// The unique identity assigned by the identity generator.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// A simple indexer for quickly accessing the entities statistical data.
