@@ -22,8 +22,8 @@ namespace Highworm {
         /// <returns>
         /// The collection that implements <see cref="System.Collections.IList"/>.
         /// </returns>
-        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action) {
-            var enumerable = source.ToList<T>(); enumerable.ForEach(action); return enumerable;
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
+            foreach (var enumerable in source) action(enumerable);
         }
 
         /// <summary>
