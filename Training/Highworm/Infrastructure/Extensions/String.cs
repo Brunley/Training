@@ -28,9 +28,7 @@ namespace Highworm {
         /// <returns>
         /// The initialized, non-null <see cref="System.Text.StringBuilder"/> for method chaining.
         /// </returns>
-        public static StringBuilder Then(this StringBuilder source) {
-            return source;
-        }
+        public static StringBuilder Then(this StringBuilder source) => source;
 
         /// <summary>
         /// A simple step that returns a non-null, initialized <see cref="System.Text.StringBuilder"/> and
@@ -41,9 +39,7 @@ namespace Highworm {
         /// <returns>
         /// The initialized, non-null <see cref="System.Text.StringBuilder"/> for method chaining.
         /// </returns>
-        public static string Then(this StringBuilder source, Func<StringBuilder> method) {
-            return method().ToString();
-        }
+        public static string Then(this StringBuilder source, Func<StringBuilder> method) => method().ToString();
 
         /// <summary>
         /// Reads the console input and performs an anonymous method with it.

@@ -8,13 +8,6 @@ namespace Highworm.Models {
     [Identity("players")]
     public class Character : IMayParticipate {
         /// <summary>
-        /// Initialize a new character.
-        /// </summary>
-        public Character() {
-            Statistics = new Dictionary<string, decimal>();
-        }
-
-        /// <summary>
         /// The character's name.
         /// </summary>
         public string Name { get; set; }
@@ -22,7 +15,7 @@ namespace Highworm.Models {
         /// <summary>
         /// The character's statistical data.
         /// </summary>
-        public IDictionary<string, decimal> Statistics { get; set; }
+        public IDictionary<string, decimal> Statistics { get; set; } = new Dictionary<string, decimal>();
 
         /// <summary>
         /// Create a new, empty <see cref="Highworm.IMayParticipate"/> with default data.
@@ -31,19 +24,17 @@ namespace Highworm.Models {
         /// <returns>
         /// The created <see cref="Highworm.IMayParticipate"/>.
         /// </returns>
-        public static T Create<T>(string name) where T : IMayParticipate, new() {
-            return new T() {
-                Name = name,
-                Statistics = new Dictionary<string, decimal> {
-                        { "Health", 20 },
-                        { "Initiative", new Irregular().Next(0, 10) },
-                        { "Mana", 15 },
-                        { "Health Replenishment", 5 },
-                        { "Mana Replenishment", 5 },
-                        { "Energy", 1 },
-                        { "Force", 4 }
-                    }
-            };
-        }
+        public static T Create<T>(string name) where T : IMayParticipate, new() => new T() {
+            Name = name,
+            Statistics = new Dictionary<string, decimal> {
+                { "Health", 20 },
+                { "Initiative", new Irregular().Next(0, 10) },
+                { "Mana", 15 },
+                { "Health Replenishment", 5 },
+                { "Mana Replenishment", 5 },
+                { "Energy", 1 },
+                { "Force", 4 }
+            }
+        };
     }
 }

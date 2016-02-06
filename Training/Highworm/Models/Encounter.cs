@@ -9,23 +9,20 @@ namespace Highworm.Models {
         /// <summary>
         /// A collection of sortable participants.
         /// </summary>
-        public IList<IMayEncounter> Participants { get; set; }
+        public IList<IMayEncounter> Participants { get; set; } = new List<IMayEncounter>();
 
         /// <summary>
         /// A collection of identity generators.
         /// </summary>
-        private IDictionary<string, HiLo> HiLo { get; set; }
+        private IDictionary<string, HiLo> HiLo { get; set; } = new Dictionary<string, HiLo>();
 
         /// <summary>
         /// Retrieve a new identity for the given type.
         /// </summary>
-        /// <param name="type">The type to retrieve an identity for.</param>
         /// <returns>
         /// A new identity for the given type.
         /// </returns>
-        public HiLo Identity<T>() {
-            return HiLo?[typeof(T).Get<IdentityAttribute, string>(attribute => attribute.Name)];
-        }
+        public HiLo Identity<T>() => HiLo?[typeof(T).Get<IdentityAttribute, string>(attribute => attribute.Name)];
 
         /// <summary>
         /// Create a new, empty <see cref="Highworm.Models.Encounter"/> with no participants.
@@ -35,13 +32,11 @@ namespace Highworm.Models {
         /// <returns>
         /// The created <see cref="Highworm.Models.Encounter"/>.
         /// </returns>
-        public static Encounter Create<T, U>() where T : Encounter, new() where U : IMayEncounter, IHasIdentity {
-            return new T() {
-                HiLo = new Dictionary<string, HiLo> {
-                    [typeof(U).Identity<U>()] = new HiLo<U>(typeof(U).Identity<U>()) 
-                },
-                Participants = new List<IMayEncounter>()
-            };
-        }
+        public static Encounter Create<T, U>() where T : Encounter, new() where U : IMayEncounter, IHasIdentity => new T() {
+            HiLo = new Dictionary<string, HiLo> {
+                [typeof(U).Identity<U>()] = new HiLo<U>(typeof(U).Identity<U>()) 
+            },
+            Participants = new List<IMayEncounter>()
+        };
     }
 }

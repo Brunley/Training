@@ -17,9 +17,7 @@ namespace Highworm {
         /// <returns>
         /// A class that is unproxied and unwrapped.
         /// </returns>
-        public static T As<T>(this object source) where T : class {
-            return source as T;
-        }
+        public static T As<T>(this object source) where T : class => source as T;
 
         /// <summary>
         /// Attempt to parse the value of a given index in a <see cref="System.Collections.Generic.IDictionary{TKey, TValue}"/>
@@ -30,9 +28,7 @@ namespace Highworm {
         /// Returns the boolean value of the string, if it is not null; Otherwise false.
         /// </returns>
         public static Boolean TryParse(this IDictionary<string, string> source, string value) {
-            if (source?[value] == null)
-                return false;
-            return Boolean.Parse(source[value]);
+            return source?[value] != null && Boolean.Parse(source[value]);
         }
 
         /// <summary>
@@ -65,9 +61,8 @@ namespace Highworm {
         /// <typeparam name="TType">A type that implements <see cref="Highworm.IdentityAttribute"/></typeparam>
         /// <param name="type">The <typeparamref name="TType"/></param>.
         /// <returns>The <see cref="Highworm.IdentityAttribute.Name"/> field.</returns>
-        public static string Identity<TType>(this Type type) where TType: IHasIdentity {
-            return typeof(TType).Get<IdentityAttribute, string>(attribute => attribute.Name);
-        }
+        public static string Identity<TType>(this Type type) where TType: IHasIdentity => 
+            typeof(TType).Get<IdentityAttribute, string>(attribute => attribute.Name);
 
         /// <summary>
         /// A simple step that returns a non-null <typeparamref name="T"/>.
@@ -81,9 +76,7 @@ namespace Highworm {
         /// This method serves no functional purpose except to allow for more semantically clear
         /// method chains.
         /// </remarks>
-        public static T Do<T>(this T entity) {
-            return entity;
-        }
+        public static T Do<T>(this T entity) => entity;
 
         /// <summary>
         /// Perform a given action against a given <typeparamref name="T"/>.
@@ -113,9 +106,7 @@ namespace Highworm {
         /// This method serves no functional purpose except to allow for more semantically clear
         /// method chains.
         /// </remarks>
-        public static T Then<T>(this T entity, Action action) {
-            return entity.Do(action);
-        }
+        public static T Then<T>(this T entity, Action action) => entity.Do(action);
 
         /// <summary>
         /// A simple step that returns a non-null <typeparamref name="T"/>.
@@ -129,8 +120,6 @@ namespace Highworm {
         /// This method serves no functional purpose except to allow for more semantically clear
         /// method chains.
         /// </remarks>
-        public static T Then<T>(this T entity) {
-            return entity.Do();
-        }
+        public static T Then<T>(this T entity) => entity.Do();
     }
 }
